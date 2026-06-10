@@ -1,0 +1,1750 @@
+<!doctype html>
+<html lang="id" data-bs-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio - Nicky (React Edition)</title>
+    <meta name="description" content="Nicky's STEM Portfolio showcasing projects in web development, cybersecurity, and IoT. Powered by React." />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./custom.css" />
+    <link rel="stylesheet" href="./styles/react-custom.css" />
+  </head>
+  <body>
+    <div id="root">
+      <div class="d-flex flex-column justify-content-center align-items-center min-vh-100 font-mono">
+        <div class="spinner-border text-info mb-3" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="neon animate__animated animate__pulse animate__infinite">&gt; INITIALIZING_REACT_APP...</div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js" crossorigin></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.25.6/babel.min.js"></script>
+
+    <script type="text/babel" data-presets="react">
+const { useState, useEffect, useRef } = React;
+
+window.SITE_NAV = [
+  { key: 'home', label: 'Beranda', href: '#home' },
+  { key: 'skills', label: 'Skills', href: '#skills' },
+  { key: 'experience', label: 'Experience', href: '#experience' },
+  { key: 'galeri', label: 'Galeri', href: '#galeri' },
+  { key: 'blog', label: 'Blog', href: '#blog' },
+  { key: 'uses', label: 'Uses', href: '#uses' },
+  { key: 'form', label: 'Kontak', href: '#form' }
+];
+
+window.VALID_PAGES = ['home', 'skills', 'experience', 'galeri', 'blog', 'uses', 'form'];
+
+window.PAGE_TITLES = {
+  home: 'Beranda - Nicky Portfolio',
+  skills: 'Skills & Tech Stack - Nicky Portfolio',
+  experience: 'Experience - Nicky Portfolio',
+  galeri: 'Galeri - Nicky Portfolio',
+  blog: 'Blog - Nicky Portfolio',
+  uses: 'Uses / Setup - Nicky Portfolio',
+  form: 'Kontak - Nicky Portfolio',
+  '404': '404 Not Found - Nicky Portfolio'
+};
+
+const AnimatedSection = ({ children, className = '', animationClass = 'animate__fadeInUp', delay = '0ms', threshold = 0.1 }) => {
+  const [isIntersecting, setIsIntersecting] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsIntersecting(true);
+        observer.unobserve(entry.target);
+      }
+    }, {
+      threshold: threshold
+    });
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    const element = ref.current;
+    return () => {
+      if (element) {
+        observer.unobserve(element);
+      }
+    };
+  }, [threshold]);
+
+  return (
+    <div
+      ref={ref}
+      className={`${className} ${isIntersecting ? `animate__animated ${animationClass}` : 'section-hidden'}`}
+      style={{ animationDelay: isIntersecting ? delay : undefined }}
+    >
+      {children}
+    </div>
+  );
+};
+
+window.AnimatedSection = AnimatedSection;
+
+    </script>
+    <script type="text/babel" data-presets="react">
+const ProfileOffcanvas = ({ isOpen, onClose }) => {
+  return (
+    <>
+      <div
+        className={`offcanvas offcanvas-start bg-dark2 text-bg-dark ${isOpen ? 'show' : ''}`}
+        tabIndex="-1"
+        id="offcanvasProfile"
+        aria-labelledby="offcanvasProfileLabel"
+        style={{
+          borderRight: "2px solid var(--neon-dark)",
+          width: "min(320px, 85vw)",
+          visibility: isOpen ? "visible" : "hidden",
+          transition: "transform 0.3s ease-in-out, visibility 0.3s ease-in-out"
+        }}
+      >
+        <div className="offcanvas-header border-bottom border-neon">
+          <h5 className="offcanvas-title neon" id="offcanvasProfileLabel">Profile &amp; Stats</h5>
+          <button
+            type="button"
+            className="btn-close btn-close-white"
+            onClick={onClose}
+            aria-label="Tutup"
+          ></button>
+        </div>
+        <div className="offcanvas-body">
+          <div className="card bg-dark3 border border-neon mb-3">
+            <img 
+              src="images/Kessoku%20Band!.jpg" 
+              className="card-img-top img-fluid" 
+              alt="Foto profil" 
+              onError={(e) => { e.target.style.display = 'none'; }} 
+            />
+            <div className="card-body">
+              <h5 className="card-title neon">Reffalino Nicky Chandra</h5>
+              <p className="card-text small mb-0">
+                Seorang anak STEM, tertarik pada hampir semua bidang STEM walaupun tahu harus memiliki salah satu sebagai fokus utama.
+              </p>
+            </div>
+          </div>
+          <img
+            src="https://github-readme-stats-lyart-iota-28.vercel.app/api/top-langs/?username=NickyIno&layout=compact&theme=tokyonight&v=1"
+            alt="GitHub stats"
+            className="w-100 img-fluid mb-2 rounded border border-neon"
+          />
+          <p className="text-center small neon-dim mb-0">
+            Most repos are private due to NDA
+          </p>
+        </div>
+      </div>
+      {isOpen && (
+        <div
+          className="offcanvas-backdrop fade show"
+          style={{ zIndex: 1040 }}
+          onClick={onClose}
+        ></div>
+      )}
+    </>
+  );
+};
+
+window.ProfileOffcanvas = ProfileOffcanvas;
+
+    </script>
+    <script type="text/babel" data-presets="react">
+const Navbar = ({ currentPage, onOpenProfile }) => {
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  const navItems = window.SITE_NAV || [];
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 24);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleMobileNavClick = () => {
+    setIsMobileNavOpen(false);
+  };
+
+  return (
+    <nav className={`navbar navbar-expand-lg navbar-dark mb-3 sticky-top${isScrolled ? ' navbar-scrolled' : ''}`}>
+      <div className="container-fluid">
+        <a className="navbar-brand font-mono fw-bold neon fs-4 ms-lg-4" style={{ color: 'var(--neon)' }} href="#home">
+          Nicky <span className="blink">_&lt;</span>
+        </a>
+
+        <div className="d-flex align-items-center gap-2 ms-auto d-lg-none">
+          <button
+            className="btn btn-sm btn-neon-outline d-lg-none"
+            type="button"
+            aria-label="Buka profil"
+            onClick={onOpenProfile}
+            id="btnOffcanvasProfile"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+              <path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z"/>
+            </svg>
+          </button>
+
+          <button
+            className="navbar-toggler border"
+            type="button"
+            onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
+            aria-controls="navbarMobile"
+            aria-expanded={isMobileNavOpen}
+            aria-label="Buka menu navigasi"
+            style={{ borderColor: 'var(--neon)', minHeight: '44px', minWidth: '44px' }}
+            id="btnNavbarToggler"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+        </div>
+
+        <div className={`collapse navbar-collapse justify-content-lg-center ${isMobileNavOpen ? 'show' : ''}`} id="navbarMobile">
+          <ul className="navbar-nav site-nav mx-lg-auto flex-wrap justify-content-center">
+            {navItems.map((item) => {
+              const isActive = currentPage === item.key;
+              return (
+                <li className="nav-item" key={item.key}>
+                  <a
+                    className={`nav-link${isActive ? ' active fw-semibold' : ''} px-2 px-xl-3 d-flex align-items-center justify-content-center`}
+                    href={item.href}
+                    onClick={handleMobileNavClick}
+                    style={{ minHeight: '44px' }}
+                    aria-current={isActive ? 'page' : undefined}
+                  >
+                    <span className="nav-label font-mono">{item.label}</span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+window.Navbar = Navbar;
+
+    </script>
+    <script type="text/babel" data-presets="react">
+const Hero = () => {
+  // Typing animation state
+  const [typedText, setTypedText] = useState('');
+  const [wordIndex, setWordIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const words = ["Nicky", "a STEM Student.", "a Cybersecurity Enthusiast.", "a Web Developer.", "a Femboy Lover"];
+  const typingDelay = 100;
+  const erasingDelay = 50;
+  const newWordDelay = 2000;
+
+  useEffect(() => {
+    let timer;
+    const currentWord = words[wordIndex];
+
+    if (isDeleting) {
+      timer = setTimeout(() => {
+        setTypedText(currentWord.substring(0, charIndex - 1));
+        setCharIndex(prev => prev - 1);
+      }, erasingDelay);
+    } else {
+      timer = setTimeout(() => {
+        setTypedText(currentWord.substring(0, charIndex + 1));
+        setCharIndex(prev => prev + 1);
+      }, typingDelay);
+    }
+
+    // Word finished typing
+    if (!isDeleting && charIndex === currentWord.length) {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        setIsDeleting(true);
+      }, newWordDelay);
+    } 
+    // Word finished erasing
+    else if (isDeleting && charIndex === 0) {
+      setIsDeleting(false);
+      setWordIndex(prev => (prev + 1) % words.length);
+      clearTimeout(timer);
+      timer = setTimeout(() => {}, 500);
+    }
+
+    return () => clearTimeout(timer);
+  }, [charIndex, isDeleting, wordIndex]);
+
+  // Skill progress animation
+  const [animateProgress, setAnimateProgress] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimateProgress(true);
+    }, 400);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const skills = [
+    { name: 'TALL Stack (Tailwind, Alpine.js, Laravel, Livewire)', percent: 50 },
+    { name: 'Cybersecurity (Penetration Testing, CTF)', percent: 80 },
+    { name: 'MERN Stack (MongoDB, Express.js, React, Node.js)', percent: 75 },
+    { name: 'Linux & Command Line', percent: 95 },
+  ];
+
+  return (
+    <div className="hero-wrapper-redesigned rounded-4 mb-4">
+      {/* Redesigned cyber backgrounds */}
+      <div className="hero-grid-bg-enhanced"></div>
+      <div className="hero-pulse-ring"></div>
+      <div className="hero-pulse-ring-inner"></div>
+      <div className="scanner-line-enhanced"></div>
+
+      <div className="container-fluid hero-content">
+        <div className="row align-items-center g-4">
+          
+          {/* Left Info Column */}
+          <div className="col-lg-7 text-start animate__animated animate__fadeInLeft">
+            <span className="badge rounded-pill bg-dark border border-neon text-light px-3 py-2 mb-3 font-mono text-uppercase" style={{ letterSpacing: '0.05em' }}>
+              <span className="terminal-status-indicator"></span>SYS_INITIALIZED: ACTIVE
+            </span>
+            
+            <h1 className="hero-title-gradient mb-2">
+              Selamat Datang
+            </h1>
+            
+            <p className="fs-4 text-light mb-3 font-mono" style={{ minHeight: '2.2rem' }}>
+              I am <span className="neon-dim fw-bold">{typedText}</span>
+              <span className="typing-cursor neon">|</span>
+            </p>
+            
+            <p className="text-secondary small mb-4 lh-lg" style={{ maxWidth: '540px' }}>
+              Selamat datang di portofolio STEM. Saya mengeksplorasi Web Development, Cybersecurity, dan IoT dengan memegang teguh standar kurikulum, integritas kode, dan efisiensi teknologi.
+            </p>
+            
+            <div className="d-flex flex-wrap gap-3">
+              <a href="#skills" className="btn btn-neon-outline px-4 font-mono text-uppercase d-inline-flex align-items-center justify-content-center">
+                <span>&gt; Lihat Skills</span>
+              </a>
+              <a href="#form" className="btn btn-outline-light px-4 font-mono text-uppercase d-inline-flex align-items-center justify-content-center" style={{ minHeight: '44px' }}>
+                <span>&gt; Hubungi Saya</span>
+              </a>
+            </div>
+          </div>
+          
+          {/* Right Diagnostic Column */}
+          <div className="col-lg-5 animate__animated animate__fadeInRight">
+            <div className="hero-glowing-card font-mono text-start">
+              <div className="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom border-neon">
+                <span className="text-secondary small">&gt;_ SYSTEM_DIAGNOSTIC</span>
+                <span className="badge bg-neon-dark text-neon border border-neon py-1 px-2 small animate__animated animate__pulse animate__infinite">SECURE</span>
+              </div>
+              
+              <div className="d-flex flex-column gap-3 small">
+                <div>
+                  <div className="d-flex justify-content-between mb-1 text-secondary">
+                    <span>USER:</span>
+                    <span className="neon">NICKY_INO</span>
+                  </div>
+                  <div className="d-flex justify-content-between mb-1 text-secondary">
+                    <span>STATUS:</span>
+                    <span className="text-success">ONLINE</span>
+                  </div>
+                  <div className="d-flex justify-content-between mb-1 text-secondary">
+                    <span>LOCATION:</span>
+                    <span className="neon-dim">KARANGANYAR, ID</span>
+                  </div>
+                </div>
+                
+                <div className="border-top border-neon pt-3">
+                  <span className="d-block mb-2 text-secondary text-uppercase">
+                    &gt; STEM Skill Index
+                  </span>
+
+                  {skills.map((skill, index) => (
+                    <div className="mb-2" key={index}>
+                      <div className="d-flex justify-content-between mb-1 text-secondary">
+                        <span>{skill.name}</span>
+                        <span className="neon">{skill.percent}%</span>
+                      </div>
+                      
+                      <div className="progress bg-dark" style={{ height: '6px', border: '1px solid var(--bs-border-color)' }}>
+                        <div 
+                          className="progress-bar bg-info skill-bar-progress" 
+                          style={{ width: animateProgress ? `${skill.percent}%` : '0%' }}
+                        ></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  );
+};
+
+window.Hero = Hero;
+
+    </script>
+    <script type="text/babel" data-presets="react">
+const AboutMe = () => {
+  return (
+    <div className="p-3 rounded shadow-sm mb-3 bg-dark2 border border-1 border-neon">
+      <h2 className="h4 border-bottom border-neon pb-2 mb-3 neon">About Me</h2>
+      <p className="small mb-0" style={{ lineHeight: '1.6' }}>
+        Halo! Saya Reffalino Nicky Chandra, seorang anak STEM yang memiliki ketertarikan luas pada dunia teknologi dan sains.
+        Saya senang mengeksplorasi berbagai bidang mulai dari Web Development, Cybersecurity, hingga IoT, meskipun saya menyadari
+        pentingnya memiliki satu fokus keahlian. Bagi saya, coding bukan sekadar tentang hasil akhir, melainkan proses memahami logika,
+        menyelesaikan masalah, dan terus beradaptasi dengan perkembangan sistem.
+      </p>
+    </div>
+  );
+};
+
+window.AboutMe = AboutMe;
+
+    </script>
+    <script type="text/babel" data-presets="react">
+const GitHubStreak = () => {
+  return (
+    <div className="p-3 rounded shadow-lg mb-3 bg-dark2 border border-3 border-neon">
+      <h2 className="h4 border-bottom border-neon pb-2 mb-3 neon">
+        GitHub Streak{' '}
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-fire" viewBox="0 0 16 16" aria-hidden="true" style={{ verticalAlign: 'middle' }}>
+          <path d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16m0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15"/>
+        </svg>
+      </h2>
+      <img src="https://github-readme-streak-stats.herokuapp.com/?user=NickyIno&theme=tokyonight" alt="GitHub streak" className="w-100 img-fluid" loading="lazy" />
+    </div>
+  );
+};
+
+window.GitHubStreak = GitHubStreak;
+
+    </script>
+    <script type="text/babel" data-presets="react">
+const Prinsip = ({ view = 'desktop' }) => {
+  const [activeTab, setActiveTab] = useState('cbp');
+
+  const prinsipData = [
+    {
+      id: 'cbp',
+      short_title: 'Curriculum-Bound',
+      title: 'Curriculum-Bound Principle',
+      text: 'Menjaga "kemurnian" hasil <b>Codingan Sekolah</b> dengan hanya menggunakan apa yang diajarkan. Kalau sekolah tidak mengajarkan, ya tidak akan dipakai di project sekolah.',
+      short_text: 'Menjaga "kemurnian" hasil Codingan Sekolah dengan hanya menggunakan apa yang diajarkan.'
+    },
+    {
+      id: 'drtw',
+      short_title: "Don't Reinvent the Wheel",
+      title: "Don't Reinvent the Wheel",
+      text: 'Menolak kebiasaan buang-buang waktu dengan menulis ulang logika yang sudah disempurnakan oleh ribuan engineer. Memilih reuse library — solusi yang stabil, aman, dan teruji.',
+      short_text: 'Memilih reuse library daripada menulis ulang logika dari nol.'
+    },
+    {
+      id: 'cia',
+      short_title: 'CIA',
+      title: 'Confidentiality, Integrity, and Availability',
+      text: 'Prinsip CIA yang sering dipakai di cybersecurity, tapi juga berlaku di programming secara umum. Jaga integritas kode dan data, serta pastikan sistem tetap tersedia.',
+      short_text: 'Jaga kerahasiaan, integritas, dan ketersediaan sistem.'
+    }
+  ];
+
+  if (view === 'desktop') {
+    return (
+      <div className="p-3 rounded shadow-sm bg-dark2 border border-1 border-neon">
+        <h2 className="h4 border-bottom border-neon pb-2 mb-3 neon">Prinsip dalam Pemrograman</h2>
+        {prinsipData.map((p, i) => (
+          <div className="d-flex pt-3" key={p.id}>
+            <div className={`pb-3 mb-0 small lh-sm ${i < prinsipData.length - 1 ? 'border-bottom border-neon' : ''} w-100`}>
+              <strong className="d-block mb-1 neon-dim">{p.title}</strong>
+              <span dangerouslySetInnerHTML={{ __html: p.text }}></span>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  // Mobile View
+  const activePrinsip = prinsipData.find(p => p.id === activeTab);
+
+  return (
+    <div>
+      <ul className="nav nav-pills nav-pills-cyber flex-column mb-3" role="tablist">
+        {prinsipData.map((p) => (
+          <li className="nav-item" key={p.id}>
+            <button 
+              className={`nav-link ${activeTab === p.id ? 'active' : ''} w-100 text-start mb-1`}
+              onClick={() => setActiveTab(p.id)}
+              style={{ minHeight: '44px' }}
+            >
+              {p.short_title}
+            </button>
+          </li>
+        ))}
+      </ul>
+      <div className="tab-content border-top border-neon pt-3">
+        <div className="tab-pane active fade show small lh-sm">
+          {activePrinsip ? activePrinsip.short_text : ''}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+window.Prinsip = Prinsip;
+
+    </script>
+    <script type="text/babel" data-presets="react">
+const SnakeContribution = () => {
+  return (
+    <div className="row my-4">
+      <h2 className="h4 neon border-bottom border-neon pb-2 mb-3">Riwayat Kontribusi Github</h2>
+      <div className="col-12 p-0 rounded shadow-sm border border-neon bg-dark2 overflow-auto" style={{ minHeight: '200px' }}>
+        <img 
+          src="https://raw.githubusercontent.com/NickyIno/NickyIno/output/github-snake-dark.svg" 
+          alt="GitHub contribution snake" 
+          className="img-fluid w-100" 
+          style={{ minWidth: '320px' }} 
+          loading="lazy" 
+        />
+      </div>
+    </div>
+  );
+};
+
+window.SnakeContribution = SnakeContribution;
+
+    </script>
+    <script type="text/babel" data-presets="react">
+const StatsBar = () => {
+  const AnimatedSection = window.AnimatedSection;
+
+  // PLACEHOLDER: replace with real metrics when available
+  const stats = [
+    { value: '10+', label: 'Tech Stack', icon: 'M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4' },
+    { value: '1', label: 'Years Coding', icon: 'M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0' },
+    { value: '67+', label: 'CTF Challenges', icon: 'M5.338 1.59a61 61 0 0 0-2.837.855.483.483 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.7 10.7 0 0 0 2.287 2.233c.346.244.652.42.893.533q.18.085.293.118a1 1 0 0 0 .101.025 1 1 0 0 0 .1-.025q.114-.034.294-.118c.24-.113.547-.29.893-.533a10.7 10.7 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.483.483 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.8 11.8 0 0 1-2.517 2.453 7 7 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7 7 0 0 1-1.048-.625 11.8 11.8 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 63 63 0 0 1 5.072.56' },
+    { value: '2', label: 'Semesters Active', icon: 'M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z' }
+  ];
+
+  return (
+    <AnimatedSection animationClass="animate__fadeInUp" delay="100ms">
+      <section className="stats-bar mb-4" aria-label="Portfolio statistics">
+        <div className="row g-3">
+          {stats.map((stat, i) => (
+            <div className="col-6 col-lg-3" key={i}>
+              <div className="stats-card h-100 p-3 rounded-4 bg-dark2 border border-neon text-center project-card">
+                <div className="stats-icon mx-auto mb-2 d-flex align-items-center justify-content-center rounded-circle bg-neon-dark">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" className="text-neon" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d={stat.icon} />
+                  </svg>
+                </div>
+                <div className="stats-value neon font-mono fw-bold fs-3 mb-1">{stat.value}</div>
+                <div className="stats-label small neon-dim text-uppercase">{stat.label}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </AnimatedSection>
+  );
+};
+
+window.StatsBar = StatsBar;
+
+    </script>
+    <script type="text/babel" data-presets="react">
+const Achievements = () => {
+  // PLACEHOLDER: replace with real certifications and awards
+  const items = [
+    {
+      title: 'PicoCTF Participant',
+      org: 'Carnegie Mellon Cylab',
+      year: '2024',
+      desc: 'Menyelesaikan berbagai challenge cybersecurity di platform PicoCTF.'
+    },
+    {
+      title: 'STEM School Curriculum',
+      org: 'Sekolah Menengah',
+      year: '2023–now',
+      desc: 'Mengikuti kurikulum STEM dengan fokus pada pemrograman dan teknologi.'
+    },
+    {
+      title: 'GitHub Active Contributor',
+      org: 'GitHub',
+      year: '2023–now',
+      desc: 'Mempertahankan streak commit dan menerbitkan project sekolah secara publik.'
+    },
+    {
+      title: 'Continuous Learning',
+      org: 'Self-paced Study',
+      year: '2024',
+      desc: 'Terus mengembangkan skill web development dan cybersecurity secara mandiri.'
+    }
+  ];
+
+  return (
+    <section className="achievements-section" aria-label="Achievements and certifications">
+      <h2 className="h4 neon border-bottom border-neon pb-2 mb-4">Achievements &amp; Certifications</h2>
+      <div className="row g-3">
+        {items.map((item, i) => (
+          <div className="col-md-6" key={i}>
+            <article className="achievement-card p-4 rounded-4 bg-dark2 border border-neon h-100 project-card">
+              <div className="d-flex justify-content-between align-items-start mb-2">
+                <h3 className="h6 neon mb-0">{item.title}</h3>
+                <span className="badge bg-neon-dark text-neon border border-neon font-mono small">{item.year}</span>
+              </div>
+              <p className="small neon-dim mb-2 font-mono">{item.org}</p>
+              <p className="small mb-0 text-secondary">{item.desc}</p>
+            </article>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+window.Achievements = Achievements;
+
+    </script>
+    <script type="text/babel" data-presets="react">
+const SkillsStack = () => {
+  const AnimatedSection = window.AnimatedSection;
+  const Achievements = window.Achievements;
+
+  // PLACEHOLDER: update proficiency levels and categories with real data
+  const categories = [
+    {
+      name: 'Frontend',
+      skills: [
+        { name: 'HTML / CSS', level: 90 },
+        { name: 'JavaScript', level: 85 },
+        { name: 'React', level: 75 },
+        { name: 'Bootstrap', level: 88 },
+        { name: 'Tailwind CSS', level: 50 }
+      ]
+    },
+    {
+      name: 'Backend',
+      skills: [
+        { name: 'PHP', level: 80 },
+        { name: 'Laravel', level: 55 },
+        { name: 'Node.js', level: 70 },
+        { name: 'MySQL', level: 82 },
+        { name: 'CodeIgniter 3', level: 75 }
+      ]
+    },
+    {
+      name: 'Cybersecurity',
+      skills: [
+        { name: 'CTF / PicoCTF', level: 80 },
+        { name: 'Linux CLI', level: 95 },
+        { name: 'Penetration Testing', level: 65 },
+        { name: 'Network Basics', level: 70 }
+      ]
+    },
+    {
+      name: 'Tools & Other',
+      skills: [
+        { name: 'Git / GitHub', level: 88 },
+        { name: 'VS Code / Cursor', level: 92 },
+        { name: 'Python', level: 78 },
+        { name: 'IoT Basics', level: 45 }
+      ]
+    }
+  ];
+
+  const allTags = categories.flatMap((c) => c.skills.map((s) => s.name));
+
+  return (
+    <main className="container pb-4">
+      <header className="mb-4 animate__animated animate__fadeInLeft">
+        <h1 className="h2 neon border-bottom border-neon pb-2">Skills &amp; Tech Stack</h1>
+        <p className="small neon-dim mb-0">Teknologi yang saya gunakan dan terus kembangkan — dari web development hingga cybersecurity.</p>
+      </header>
+
+      <AnimatedSection animationClass="animate__fadeInUp" delay="100ms">
+        <div className="skill-tags-cloud mb-4 p-4 rounded-4 bg-dark2 border border-neon">
+          <h2 className="h6 neon font-mono text-uppercase mb-3">&gt; Stack Overview</h2>
+          <div className="d-flex flex-wrap gap-2">
+            {allTags.map((tag, i) => (
+              <span className="skill-tag badge rounded-pill border border-neon px-3 py-2" key={i}>{tag}</span>
+            ))}
+          </div>
+        </div>
+      </AnimatedSection>
+
+      <div className="row g-4 mb-4">
+        {categories.map((cat, ci) => (
+          <div className="col-md-6" key={ci}>
+            <AnimatedSection animationClass="animate__fadeInUp" delay={`${(ci + 1) * 100}ms`}>
+              <div className="p-4 rounded-4 bg-dark2 border border-neon h-100 project-card">
+                <h2 className="h5 neon border-bottom border-neon pb-2 mb-3 font-mono">{cat.name}</h2>
+                {cat.skills.map((skill, si) => (
+                  <div className="mb-3" key={si}>
+                    <div className="d-flex justify-content-between mb-1 small">
+                      <span className="neon-dim">{skill.name}</span>
+                      <span className="neon font-mono">{skill.level}%</span>
+                    </div>
+                    <div className="progress bg-dark3" style={{ height: '6px', border: '1px solid var(--bs-border-color)' }}>
+                      <div className="progress-bar bg-info skill-bar-progress" style={{ width: `${skill.level}%` }}></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </AnimatedSection>
+          </div>
+        ))}
+      </div>
+
+      <AnimatedSection animationClass="animate__fadeInUp">
+        <Achievements />
+      </AnimatedSection>
+    </main>
+  );
+};
+
+window.SkillsStack = SkillsStack;
+
+    </script>
+    <script type="text/babel" data-presets="react">
+const Experience = () => {
+  const AnimatedSection = window.AnimatedSection;
+
+  // PLACEHOLDER: replace with real education and work history
+  const timeline = [
+    {
+      period: '2024 – Sekarang',
+      title: 'STEM Student — Web & Cybersecurity',
+      org: 'Sekolah Menengah',
+      type: 'education',
+      points: [
+        'Mempelajari web development (HTML, CSS, JS, PHP, React)',
+        'Eksplorasi cybersecurity melalui CTF dan Linux',
+        'Membangun project sekolah: CMS, Buku Kas, Portfolio'
+      ]
+    },
+    {
+      period: '2024',
+      title: 'Self-taught Developer',
+      org: 'Personal Learning',
+      type: 'learning',
+      points: [
+        'Mempelajari MERN stack dan Laravel secara mandiri',
+        'Berpartisipasi di PicoCTF dan latihan penetration testing',
+        'Mengembangkan workflow Git/GitHub untuk version control'
+      ]
+    },
+    {
+      period: '2023',
+      title: 'First Steps in Programming',
+      org: 'School & Online Resources',
+      type: 'education',
+      points: [
+        'Memulai dengan Python dan logika pemrograman dasar',
+        'Membuat portofolio web semester 1',
+        'Memahami fundamental algoritma dan struktur data'
+      ]
+    }
+  ];
+
+  return (
+    <main className="container pb-4">
+      <header className="mb-4 animate__animated animate__fadeInLeft">
+        <h1 className="h2 neon border-bottom border-neon pb-2">Experience &amp; Timeline</h1>
+        <p className="small neon-dim mb-0">Perjalanan belajar dan pengembangan saya di dunia STEM dan teknologi.</p>
+      </header>
+
+      <div className="timeline">
+        {timeline.map((item, i) => (
+          <AnimatedSection animationClass="animate__fadeInLeft" delay={`${i * 120}ms`} key={i}>
+            <article className="timeline-item project-card">
+              <div className="timeline-marker" aria-hidden="true"></div>
+              <div className="timeline-content p-4 rounded-4 bg-dark2 border border-neon">
+                <div className="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-2">
+                  <span className="badge bg-neon-dark text-neon border border-neon font-mono small text-uppercase">{item.type}</span>
+                  <span className="small neon-dim font-mono">{item.period}</span>
+                </div>
+                <h2 className="h5 neon mb-1">{item.title}</h2>
+                <p className="small neon-dim mb-3 font-mono">{item.org}</p>
+                <ul className="small mb-0 ps-3 text-secondary">
+                  {item.points.map((point, pi) => (
+                    <li key={pi} className="mb-1">{point}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          </AnimatedSection>
+        ))}
+      </div>
+    </main>
+  );
+};
+
+window.Experience = Experience;
+
+    </script>
+    <script type="text/babel" data-presets="react">
+const Blog = () => {
+  const AnimatedSection = window.AnimatedSection;
+
+  // PLACEHOLDER: replace with real blog posts when available
+  const posts = [
+    {
+      slug: 'getting-started-with-ctf',
+      title: 'Getting Started with CTF as a Student',
+      date: '15 Mar 2025',
+      readTime: '5 min',
+      excerpt: 'Catatan pertama saya tentang memulai perjalanan Capture The Flag — tools, mindset, dan resource yang membantu.',
+      tags: ['Cybersecurity', 'CTF', 'Learning']
+    },
+    {
+      slug: 'why-i-chose-react',
+      title: 'Why I Chose React for My Portfolio',
+      date: '2 Feb 2025',
+      readTime: '4 min',
+      excerpt: 'Alasan saya membangun ulang portofolio dengan React dan Babel Standalone tanpa build step.',
+      tags: ['React', 'Web Dev', 'Portfolio']
+    },
+    {
+      slug: 'curriculum-bound-principle',
+      title: 'Curriculum-Bound Principle in Practice',
+      date: '10 Jan 2025',
+      readTime: '6 min',
+      excerpt: 'Refleksi tentang Curriculum-Bound Principle dan kapan boleh melangkah lebih jauh dari materi sekolah.',
+      tags: ['STEM', 'Philosophy', 'Learning']
+    },
+    {
+      slug: 'linux-cli-essentials',
+      title: 'Linux CLI Essentials for Beginners',
+      date: '20 Dec 2024',
+      readTime: '7 min',
+      excerpt: 'Perintah terminal yang paling sering saya gunakan saat belajar cybersecurity dan development.',
+      tags: ['Linux', 'CLI', 'Tutorial']
+    }
+  ];
+
+  return (
+    <main className="container pb-4">
+      <header className="mb-4 animate__animated animate__fadeInLeft">
+        <h1 className="h2 neon border-bottom border-neon pb-2">Blog &amp; Writing</h1>
+        <p className="small neon-dim mb-0">Catatan belajar, refleksi project, dan tutorial singkat. {/* PLACEHOLDER posts */}</p>
+      </header>
+
+      <div className="row g-4">
+        {posts.map((post, i) => (
+          <div className="col-md-6" key={post.slug}>
+            <AnimatedSection animationClass="animate__fadeInUp" delay={`${i * 100}ms`}>
+              <article className="blog-card p-4 rounded-4 bg-dark2 border border-neon h-100 project-card d-flex flex-column">
+                <div className="d-flex justify-content-between small neon-dim font-mono mb-2">
+                  <span>{post.date}</span>
+                  <span>{post.readTime} read</span>
+                </div>
+                <h2 className="h5 neon mb-2">{post.title}</h2>
+                <p className="small text-secondary flex-grow-1 mb-3">{post.excerpt}</p>
+                <div className="d-flex flex-wrap gap-2 mb-3">
+                  {post.tags.map((tag, ti) => (
+                    <span className="badge rounded-pill border border-neon text-light px-2 py-1 small" key={ti}>{tag}</span>
+                  ))}
+                </div>
+                <button
+                  type="button"
+                  className="btn btn-neon-outline btn-sm align-self-start font-mono"
+                  onClick={() => alert('PLACEHOLDER: Blog post "' + post.title + '" — full article coming soon.')}
+                >
+                  &gt; Read More
+                </button>
+              </article>
+            </AnimatedSection>
+          </div>
+        ))}
+      </div>
+    </main>
+  );
+};
+
+window.Blog = Blog;
+
+    </script>
+    <script type="text/babel" data-presets="react">
+const UsesSetup = () => {
+  const AnimatedSection = window.AnimatedSection;
+
+  // PLACEHOLDER: update with your actual gear and software
+  const categories = [
+    {
+      title: 'Hardware',
+      items: [
+        { name: 'Laptop', detail: 'Windows 11 — primary dev machine' },
+        { name: 'Keyboard', detail: 'Mechanical keyboard for coding sessions' },
+        { name: 'Headphones', detail: 'For focus during CTF and coding' }
+      ]
+    },
+    {
+      title: 'Software',
+      items: [
+        { name: 'VS Code / Cursor', detail: 'Primary IDE with cyber-dark theme' },
+        { name: 'Laragon', detail: 'Local PHP/MySQL development stack' },
+        { name: 'Git & GitHub', detail: 'Version control and portfolio hosting' },
+        { name: 'Kali Linux (VM)', detail: 'Cybersecurity practice environment' }
+      ]
+    },
+    {
+      title: 'Browser & Tools',
+      items: [
+        { name: 'Chrome / Firefox', detail: 'DevTools for debugging' },
+        { name: 'Postman', detail: 'API testing (when needed)' },
+        { name: 'Figma', detail: 'Occasional UI mockups' }
+      ]
+    },
+    {
+      title: 'Learning',
+      items: [
+        { name: 'PicoCTF', detail: 'Cybersecurity challenges' },
+        { name: 'MDN Web Docs', detail: 'Web development reference' },
+        { name: 'YouTube & Blogs', detail: 'Tutorials and tech news' }
+      ]
+    }
+  ];
+
+  return (
+    <main className="container pb-4">
+      <header className="mb-4 animate__animated animate__fadeInLeft">
+        <h1 className="h2 neon border-bottom border-neon pb-2">Uses / Setup</h1>
+        <p className="small neon-dim mb-0">Tools, gear, dan software yang saya gunakan sehari-hari untuk belajar dan membangun project.</p>
+      </header>
+
+      <div className="row g-4">
+        {categories.map((cat, ci) => (
+          <div className="col-md-6" key={ci}>
+            <AnimatedSection animationClass="animate__fadeInUp" delay={`${ci * 100}ms`}>
+              <div className="uses-category p-4 rounded-4 bg-dark2 border border-neon h-100 project-card">
+                <h2 className="h5 neon border-bottom border-neon pb-2 mb-3 font-mono">&gt; {cat.title}</h2>
+                <ul className="list-unstyled mb-0">
+                  {cat.items.map((item, ii) => (
+                    <li className="uses-item d-flex gap-3 py-2 border-bottom border-neon-dark" key={ii}>
+                      <span className="neon font-mono flex-shrink-0">&gt;</span>
+                      <div>
+                        <div className="neon-dim fw-semibold small">{item.name}</div>
+                        <div className="text-secondary small">{item.detail}</div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </AnimatedSection>
+          </div>
+        ))}
+      </div>
+    </main>
+  );
+};
+
+window.UsesSetup = UsesSetup;
+
+    </script>
+    <script type="text/babel" data-presets="react">
+const Home = () => {
+  const [activeMobileAcc, setActiveMobileAcc] = useState(0);
+
+  const Hero = window.Hero;
+  const StatsBar = window.StatsBar;
+  const AnimatedSection = window.AnimatedSection;
+  const AboutMe = window.AboutMe;
+  const GitHubStreak = window.GitHubStreak;
+  const Prinsip = window.Prinsip;
+  const SnakeContribution = window.SnakeContribution;
+
+  const toggleMobileAcc = (index) => {
+    setActiveMobileAcc(activeMobileAcc === index ? null : index);
+  };
+
+  return (
+    <main className="container pb-4">
+      <div className="row mb-4">
+        <div className="col-12">
+          <Hero />
+        </div>
+      </div>
+
+      <StatsBar />
+
+      <div className="row mt-3">
+        <div className="col-lg-8 col-12">
+          <div className="d-none d-lg-block">
+            <AnimatedSection animationClass="animate__fadeInLeft" delay="100ms">
+              <AboutMe />
+            </AnimatedSection>
+
+            <AnimatedSection animationClass="animate__fadeInLeft" delay="200ms">
+              <GitHubStreak />
+            </AnimatedSection>
+
+            <AnimatedSection animationClass="animate__fadeInLeft" delay="300ms">
+              <Prinsip view="desktop" />
+            </AnimatedSection>
+          </div>
+
+          <div className="d-block d-lg-none my-3">
+            <AnimatedSection animationClass="animate__zoomIn" delay="200ms">
+              <div className="accordion" id="mobileContentAccordion">
+                <div className="accordion-item border border-neon">
+                  <h2 className="accordion-header">
+                    <button
+                      className={`accordion-button ${activeMobileAcc === 0 ? '' : 'collapsed'}`}
+                      type="button"
+                      onClick={() => toggleMobileAcc(0)}
+                      style={{ minHeight: '44px' }}
+                    >
+                      About Me
+                    </button>
+                  </h2>
+                  <div
+                    className={`accordion-collapse collapse ${activeMobileAcc === 0 ? 'show' : ''}`}
+                    style={{ display: activeMobileAcc === 0 ? 'block' : 'none' }}
+                  >
+                    <div className="accordion-body">
+                      <p className="small mb-0" style={{ lineHeight: '1.6' }}>
+                        Halo! Saya Reffalino Nicky Chandra, seorang anak STEM yang memiliki ketertarikan luas pada dunia teknologi dan sains. Saya senang mengeksplorasi Web Development, Cybersecurity, hingga IoT.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="accordion-item border border-neon border-top-0">
+                  <h2 className="accordion-header">
+                    <button
+                      className={`accordion-button ${activeMobileAcc === 1 ? '' : 'collapsed'}`}
+                      type="button"
+                      onClick={() => toggleMobileAcc(1)}
+                      style={{ minHeight: '44px' }}
+                    >
+                      GitHub Streak
+                    </button>
+                  </h2>
+                  <div
+                    className={`accordion-collapse collapse ${activeMobileAcc === 1 ? 'show' : ''}`}
+                    style={{ display: activeMobileAcc === 1 ? 'block' : 'none' }}
+                  >
+                    <div className="accordion-body">
+                      <img src="https://github-readme-streak-stats.herokuapp.com/?user=NickyIno&theme=tokyonight" alt="GitHub streak" className="w-100 img-fluid" loading="lazy" />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="accordion-item border border-neon border-top-0">
+                  <h2 className="accordion-header">
+                    <button
+                      className={`accordion-button ${activeMobileAcc === 2 ? '' : 'collapsed'}`}
+                      type="button"
+                      onClick={() => toggleMobileAcc(2)}
+                      style={{ minHeight: '44px' }}
+                    >
+                      Prinsip dalam Pemrograman
+                    </button>
+                  </h2>
+                  <div
+                    className={`accordion-collapse collapse ${activeMobileAcc === 2 ? 'show' : ''}`}
+                    style={{ display: activeMobileAcc === 2 ? 'block' : 'none' }}
+                  >
+                    <div className="accordion-body p-3">
+                      <Prinsip view="mobile" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+
+        <div className="col-lg-4 col-12" id="about-sidebar">
+          <div className="d-none d-lg-block my-3">
+            <AnimatedSection animationClass="animate__fadeInRight" delay="200ms">
+              <div className="card bg-dark2 border border-neon mb-3">
+                <img src="images/Kessoku%20Band!.jpg" className="card-img-top img-fluid" alt="Foto profil" />
+                <div className="card-body">
+                  <h2 className="card-title h5 neon">Reffalino Nicky Chandra</h2>
+                  <p className="card-text small mb-0">Seorang anak STEM, tertarik pada hampir semua bidang STEM walaupun tahu harus memiliki salah satu sebagai fokus utama.</p>
+                </div>
+              </div>
+              <img src="https://github-readme-stats-lyart-iota-28.vercel.app/api/top-langs/?username=NickyIno&layout=compact&theme=tokyonight&v=1" alt="GitHub stats" className="w-100 img-fluid rounded shadow-sm border border-neon mb-2" loading="lazy" />
+              <p className="text-center small neon-dim mb-0">Most repos are private due to NDA</p>
+            </AnimatedSection>
+          </div>
+        </div>
+      </div>
+
+      <AnimatedSection animationClass="animate__fadeInUp">
+        <SnakeContribution />
+      </AnimatedSection>
+    </main>
+  );
+};
+
+window.Home = Home;
+
+    </script>
+    <script type="text/babel" data-presets="react">
+const Gallery = () => {
+  const [activeItem, setActiveItem] = useState(null);
+
+  const galleryItems = [
+    { src: 'images/CTF.png', title: 'PicoCTF', desc: 'Bermain CTF di PicoCTF' },
+    { src: 'images/Add%20a%20heading%20(3).png', title: 'Cybersecurity Tools', desc: 'Koleksi tools untuk belajar keamanan siber.' },
+    { src: 'images/3.png', title: 'Favorite IDE', desc: 'Lingkungan coding utama sehari-hari.' },
+    { src: 'images/StatsCTF.png', title: 'Stats CTF', desc: 'Statistik permainan CTF.' },
+    { src: 'images/LatihanDataScience.png', title: 'Latihan Data Science', desc: 'Day 1 Jadi Data Scientist' },
+    { src: 'images/FotoRandom.jpeg', title: 'Foto Random', desc: '' }
+  ];
+
+  // Escape key handler to close lightbox
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setActiveItem(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
+  const handleOpenLightbox = (item) => {
+    setActiveItem(item);
+  };
+
+  const handleCloseLightbox = () => {
+    setActiveItem(null);
+  };
+
+  return (
+    <main className="container pb-4">
+      <header className="mb-4 animate__animated animate__fadeInLeft">
+        <h1 className="h2 neon border-bottom border-neon pb-2">Galeri</h1>
+        <p className="small neon-dim mb-0">Kumpulan foto dan visual saya</p>
+      </header>
+
+      <div className="gallery-grid" id="gallery">
+        {galleryItems.map((item, i) => (
+          <div 
+            className={`gallery-card animate__animated animate__zoomIn`}
+            style={{ animationDelay: `${((i % 4) + 1) * 100}ms` }}
+            key={i}
+            onClick={() => handleOpenLightbox(item)}
+          >
+            <div className="img-wrap">
+              <img
+                src={item.src}
+                alt={item.title}
+                loading="lazy"
+              />
+              <div className="overlay-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" className="bi bi-zoom-in text-white" viewBox="0 0 16 16" aria-hidden="true">
+                  <path fillRule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"/>
+                  <path d="M10.344 11.742c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"/>
+                  <path fillRule="evenodd" d="M6.5 3a.5.5 0 0 1 .5.5V5h1.5a.5.5 0 0 1 0 1H7v1.5a.5.5 0 0 1-1 0V6H4.5a.5.5 0 0 1 0-1H5V3.5a.5.5 0 0 1 .5-.5"/>
+                </svg>
+              </div>
+            </div>
+            <div className="card-info">
+              <p className="card-title neon-dim">{item.title}</p>
+              {item.desc && <p className="card-desc">{item.desc}</p>}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Lightbox Modal */}
+      <div 
+        className={`lightbox ${activeItem ? 'active' : ''}`} 
+        role="dialog" 
+        aria-modal="true"
+        onClick={(e) => {
+          if (e.target === e.currentTarget) {
+            handleCloseLightbox();
+          }
+        }}
+      >
+        <div className="lightbox-inner">
+          <img id="lb-img" src={activeItem ? activeItem.src : ''} alt={activeItem ? activeItem.title : ''} />
+          <div className="lightbox-footer">
+            <div>
+              <p className="lightbox-title neon" id="lb-title">{activeItem ? activeItem.title : ''}</p>
+              <p className="lightbox-desc" id="lb-desc">{activeItem ? activeItem.desc : ''}</p>
+            </div>
+            <button className="close-btn" id="lb-close" onClick={handleCloseLightbox} aria-label="Tutup">✕</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+};
+
+window.Gallery = Gallery;
+
+    </script>
+    <script type="text/babel" data-presets="react">
+const ContactForm = () => {
+  const [formData, setFormData] = useState({
+    nama: '',
+    email: '',
+    topik: '',
+    pesan: '',
+    setuju: false
+  });
+
+  const [errors, setErrors] = useState([]);
+  const [sent, setSent] = useState(false);
+
+  const topics = ['Kolaborasi', 'Pertanyaan', 'Feedback', 'Mobile Dev', 'Lainnya'];
+
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newErrors = [];
+
+    if (formData.nama.trim().length < 2) {
+      newErrors.push('Nama wajib diisi (minimal 2 karakter).');
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email.trim())) {
+      newErrors.push('Email tidak valid.');
+    }
+
+    if (formData.pesan.trim() === '') {
+      newErrors.push('Pesan wajib diisi.');
+    }
+
+    if (!formData.setuju) {
+      newErrors.push('Anda harus menyetujui penggunaan data untuk keperluan demo.');
+    }
+
+    setErrors(newErrors);
+
+    if (newErrors.length === 0) {
+      setSent(true);
+      // Reset form fields
+      setFormData({
+        nama: '',
+        email: '',
+        topik: '',
+        pesan: '',
+        setuju: false
+      });
+      // Clear success message after 5 seconds
+      setTimeout(() => {
+        setSent(false);
+      }, 7000);
+    } else {
+      setSent(false);
+    }
+  };
+
+  const handleReset = () => {
+    setFormData({
+      nama: '',
+      email: '',
+      topik: '',
+      pesan: '',
+      setuju: false
+    });
+    setErrors([]);
+    setSent(false);
+  };
+
+  return (
+    <main className="container pb-4">
+      <header className="mb-4 animate__animated animate__fadeInLeft">
+        <h1 className="h2 neon border-bottom border-neon pb-2">Form Kontak</h1>
+        <p className="small neon-dim mb-0">Isi formulir di bawah. Validasi form dihandle langsung menggunakan React state (client-side demo).</p>
+      </header>
+
+      <div className="row g-4 justify-content-center">
+        <div className="col-lg-7 col-12 animate__animated animate__fadeInLeft" style={{ animationDelay: '200ms' }}>
+          {sent && (
+            <div className="alert alert-success border border-neon animate__animated animate__fadeIn" role="alert">
+              Terima kasih! Pesan Anda telah berhasil dikirim (simulasi).
+            </div>
+          )}
+
+          {errors.length > 0 && (
+            <div className="alert alert-danger border border-danger animate__animated animate__shakeX" role="alert">
+              <ul className="mb-0 small">
+                {errors.map((err, idx) => (
+                  <li key={idx}>{err}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="p-4 rounded bg-dark2 border border-neon" noValidate>
+            <div className="mb-3">
+              <label htmlFor="nama" className="form-label neon">Nama</label>
+              <input
+                type="text"
+                className={`form-control ${errors.some(e => e.includes('Nama')) ? 'is-invalid' : ''}`}
+                id="nama"
+                name="nama"
+                required
+                value={formData.nama}
+                onChange={handleInputChange}
+                placeholder="Nama lengkap"
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label neon">Email</label>
+              <input
+                type="email"
+                className={`form-control ${errors.some(e => e.includes('Email')) ? 'is-invalid' : ''}`}
+                id="email"
+                name="email"
+                required
+                value={formData.email}
+                onChange={handleInputChange}
+                placeholder="nama@email.com"
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="topik" className="form-label neon">Topik <span className="text-secondary">(opsional)</span></label>
+              <select 
+                className="form-select" 
+                id="topik" 
+                name="topik"
+                value={formData.topik}
+                onChange={handleInputChange}
+              >
+                <option value="">— Pilih topik —</option>
+                {topics.map((t, idx) => (
+                  <option value={t} key={idx}>{t}</option>
+                ))}
+              </select>
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="pesan" className="form-label neon">Pesan</label>
+              <textarea
+                className={`form-control ${errors.some(e => e.includes('Pesan')) ? 'is-invalid' : ''}`}
+                id="pesan"
+                name="pesan"
+                rows="5"
+                required
+                value={formData.pesan}
+                onChange={handleInputChange}
+                placeholder="Tulis pesan Anda..."
+              ></textarea>
+            </div>
+
+            <div className="form-check mb-4">
+              <input 
+                className="form-check-input" 
+                type="checkbox" 
+                id="setuju" 
+                name="setuju" 
+                checked={formData.setuju}
+                onChange={handleInputChange}
+                required 
+              />
+              <label className="form-check-label small" htmlFor="setuju">
+                Saya setuju data ini digunakan untuk keperluan demo/portfolio.
+              </label>
+            </div>
+
+            <div className="d-flex flex-wrap gap-2">
+              <button type="submit" className="btn btn-neon-outline px-4" style={{ minHeight: '44px' }}>
+                Kirim
+              </button>
+              <button type="button" onClick={handleReset} className="btn btn-outline-secondary px-4" style={{ minHeight: '44px' }}>
+                Reset
+              </button>
+            </div>
+          </form>
+        </div>
+
+        {/* Social Media Column */}
+        <div className="col-lg-5 col-12 animate__animated animate__fadeInRight" style={{ animationDelay: '300ms' }}>
+          <div className="p-4 rounded bg-dark2 border border-neon font-mono h-100 d-flex flex-column">
+            <h2 className="h5 neon border-bottom border-neon pb-2 mb-3">Sosial Media &amp; Koneksi</h2>
+            <p className="small text-secondary mb-4">Silakan terhubung melalui platform di bawah ini untuk kolaborasi atau diskusi terkait STEM dan pengembangan web.</p>
+            
+            <div className="d-flex flex-column gap-3">
+              {/* GitHub Link */}
+              <a href="https://github.com/NickyIno" target="_blank" rel="noopener noreferrer" 
+                 className="p-3 rounded border border-neon-dark bg-dark3 text-decoration-none d-flex align-items-center gap-3 project-card"
+                 style={{ color: 'var(--bs-body-color)' }}>
+                <div className="rounded bg-neon-dark p-2 text-neon d-flex align-items-center justify-content-center" style={{ width: '44px', height: '44px' }}>
+                  <svg width="24" height="24" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.65 7.65 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                  </svg>
+                </div>
+                <div className="flex-grow-1">
+                  <span className="d-block small text-secondary">GITHUB</span>
+                  <span className="neon-dim fw-bold">@NickyIno</span>
+                </div>
+                <span className="text-neon font-mono">&gt; VISIT</span>
+              </a>
+              
+              {/* Instagram Link */}
+              <a href="https://www.instagram.com/nicky_ino/" target="_blank" rel="noopener noreferrer" 
+                 className="p-3 rounded border border-neon-dark bg-dark3 text-decoration-none d-flex align-items-center gap-3 project-card"
+                 style={{ color: 'var(--bs-body-color)' }}>
+                <div className="rounded bg-neon-dark p-2 text-neon d-flex align-items-center justify-content-center" style={{ width: '44px', height: '44px' }}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-instagram" viewBox="0 0 16 16">
+                      <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+                  </svg>
+                </div>
+                <div className="flex-grow-1">
+                  <span className="d-block small text-secondary">INSTAGRAM</span>
+                  <span className="neon-dim fw-bold">@nicky_ino</span>
+                </div>
+                <span className="text-neon font-mono">&gt; VISIT</span>
+              </a>
+
+              {/* Email Link */}
+              <a href="mailto:reffalinonickychandra@gmail.com"
+                 className="p-3 rounded border border-neon-dark bg-dark3 text-decoration-none d-flex align-items-center gap-3 project-card"
+                 style={{ color: 'var(--bs-body-color)' }}>
+                <div className="rounded bg-neon-dark p-2 text-neon d-flex align-items-center justify-content-center" style={{ width: '44px', height: '44px' }}>
+                  <svg width="24" height="24" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                    <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114V5.383zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.114l4.758-2.876L1 5.383v5.731z"/>
+                  </svg>
+                </div>
+                <div className="flex-grow-1">
+                  <span className="d-block small text-secondary">EMAIL</span>
+                  <span className="neon-dim fw-bold">reffalino...</span>
+                </div>
+                <span className="text-neon font-mono">&gt; MAIL</span>
+              </a>
+
+              {/* Status indicator */}
+              <div className="p-3 rounded border border-neon-dark bg-dark3 d-flex align-items-center gap-3 opacity-75">
+                <div className="rounded bg-neon-dark p-2 text-neon d-flex align-items-center justify-content-center" style={{ width: '44px', height: '44px' }}>
+                  <svg width="24" height="24" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.553.553 0 0 1-1.1 0L7.1 4.995z"/>
+                  </svg>
+                </div>
+                <div className="flex-grow-1">
+                  <span className="d-block small text-secondary">STEM STATUS</span>
+                  <span className="neon-dim fw-bold">Active Learner</span>
+                </div>
+                <span className="badge bg-neon-dark text-neon border border-neon font-mono">ONLINE</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+};
+
+window.ContactForm = ContactForm;
+
+    </script>
+    <script type="text/babel" data-presets="react">
+const NotFound = () => {
+  return (
+    <main className="container pb-4">
+      <div className="not-found-wrapper text-center py-5 animate__animated animate__fadeIn">
+        <div className="font-mono neon display-1 fw-bold mb-2" style={{ textShadow: '0 0 30px rgba(0,255,231,0.4)' }}>404</div>
+        <h1 className="h3 neon mb-3">Page Not Found</h1>
+        <p className="neon-dim small mb-4 mx-auto" style={{ maxWidth: '420px' }}>
+          Halaman yang Anda cari tidak ada atau telah dipindahkan. Hash route tidak dikenali oleh sistem.
+        </p>
+        <div className="d-flex flex-wrap gap-3 justify-content-center">
+          <a href="#home" className="btn btn-neon-outline px-4 font-mono">&gt; Back to Home</a>
+          <a href="#form" className="btn btn-outline-light px-4 font-mono">&gt; Contact Me</a>
+        </div>
+        <p className="small text-secondary mt-5 font-mono">&gt; ERROR_CODE: ROUTE_NOT_FOUND</p>
+      </div>
+    </main>
+  );
+};
+
+window.NotFound = NotFound;
+
+    </script>
+    <script type="text/babel" data-presets="react">
+const BackToTop = () => {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setVisible(window.scrollY > 400);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  if (!visible) return null;
+
+  return (
+    <button
+      type="button"
+      className="back-to-top btn btn-neon-outline rounded-circle d-flex align-items-center justify-content-center"
+      onClick={scrollToTop}
+      aria-label="Kembali ke atas"
+      title="Back to top"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+        <path fillRule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
+      </svg>
+    </button>
+  );
+};
+
+window.BackToTop = BackToTop;
+
+    </script>
+    <script type="text/babel" data-presets="react">
+const Footer = () => {
+  const currentYear = new Date().getFullYear();
+  const navItems = window.SITE_NAV || [];
+
+  const socialLinks = [
+    {
+      href: 'https://github.com/NickyIno',
+      title: 'GitHub',
+      external: true,
+      icon: 'M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.65 7.65 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z'
+    },
+    {
+      href: 'https://www.instagram.com/nicky_ino/',
+      title: 'Instagram',
+      external: true,
+      icon: 'M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334'
+    },
+    {
+      href: 'mailto:reffalinonickychandra@gmail.com',
+      title: 'Email',
+      external: false,
+      icon: 'M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114V5.383zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.114l4.758-2.876L1 5.383v5.731z'
+    }
+  ];
+
+  return (
+    <footer
+      className="py-4 px-3 mt-auto"
+      style={{ backgroundColor: 'var(--bg2)', borderTop: '2px solid var(--neon-dark)' }}
+    >
+      <div className="container">
+        <div className="row g-4 mb-4">
+          <div className="col-12 col-md-4">
+            <div className="font-mono fw-bold neon fs-5 mb-2">
+              Nicky <span className="blink">_&lt;</span>
+            </div>
+            <p className="small neon-dim lh-base mb-0">
+              Reffalino Nicky Chandra<br />
+              STEM enthusiast &amp; aspiring developer.<br />
+              Karanganyar, Indonesia.
+            </p>
+          </div>
+
+          <div className="col-6 col-md-4">
+            <h6 className="neon text-uppercase small fw-semibold border-bottom border-neon pb-2 mb-3" style={{ letterSpacing: '0.15em' }}>
+              Navigasi
+            </h6>
+            <ul className="list-unstyled d-flex flex-column gap-1">
+              {navItems.map((item) => (
+                <li key={item.key}>
+                  <a href={item.href} className="footer-nav-link small text-decoration-none">&gt; {item.label}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="col-6 col-md-4">
+            <h6 className="neon text-uppercase small fw-semibold border-bottom border-neon pb-2 mb-3" style={{ letterSpacing: '0.15em' }}>
+              Kontak &amp; Sosial
+            </h6>
+            <div className="d-flex gap-2 flex-wrap">
+              {socialLinks.map((link) => (
+                <a
+                  key={link.title}
+                  href={link.href}
+                  target={link.external ? '_blank' : undefined}
+                  rel={link.external ? 'noopener noreferrer' : undefined}
+                  title={link.title}
+                  className="footer-social-link d-flex align-items-center justify-content-center rounded neon-dim text-decoration-none"
+                >
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                    <path d={link.icon} />
+                  </svg>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="d-flex justify-content-between align-items-center flex-wrap gap-2 pt-3 border-top border-neon">
+          <p className="small mb-0 neon-dim">&copy; {currentYear} Reffalino Nicky Chandra. All rights reserved.</p>
+          <div className="d-flex align-items-center gap-2 small neon-dim">
+            <span className="neon-dot" aria-hidden="true"></span>
+            Available for collaboration
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+window.Footer = Footer;
+
+    </script>
+    <script type="text/babel" data-presets="react">
+const App = () => {
+  const [currentPage, setCurrentPage] = useState('home');
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [componentsReady, setComponentsReady] = useState(false);
+
+  useEffect(() => {
+    const required = [
+      'Navbar', 'ProfileOffcanvas', 'Footer', 'Home', 'Gallery',
+      'ContactForm', 'Hero', 'AboutMe', 'GitHubStreak',
+      'Prinsip', 'SnakeContribution', 'AnimatedSection',
+      'StatsBar', 'SkillsStack', 'Experience', 'Blog', 'UsesSetup',
+      'Achievements', 'NotFound', 'BackToTop'
+    ];
+
+    const checkComponents = () => {
+      const allReady = required.every((name) => typeof window[name] !== 'undefined');
+      if (allReady) {
+        setComponentsReady(true);
+      } else {
+        setTimeout(checkComponents, 50);
+      }
+    };
+
+    checkComponents();
+  }, []);
+
+  useEffect(() => {
+    const onHash = () => {
+      const hash = window.location.hash.replace('#', '');
+      const validPages = window.VALID_PAGES || [];
+      if (hash === '') {
+        setCurrentPage('home');
+      } else if (validPages.includes(hash)) {
+        setCurrentPage(hash);
+      } else {
+        setCurrentPage('404');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      const titles = window.PAGE_TITLES || {};
+      const page = hash === '' ? 'home' : (validPages.includes(hash) ? hash : '404');
+      document.title = titles[page] || 'My Portfolio - Nicky';
+    };
+
+    onHash();
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, []);
+
+  if (!componentsReady) {
+    return (
+      <div className="d-flex flex-column justify-content-center align-items-center min-vh-100 font-mono">
+        <div className="spinner-border text-info mb-3" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+        <div className="neon animate__animated animate__pulse animate__infinite">&gt; COMPILING_COMPONENTS...</div>
+      </div>
+    );
+  }
+
+  const Navbar = window.Navbar;
+  const ProfileOffcanvas = window.ProfileOffcanvas;
+  const Footer = window.Footer;
+  const BackToTop = window.BackToTop;
+  const Home = window.Home;
+  const Gallery = window.Gallery;
+  const ContactForm = window.ContactForm;
+  const SkillsStack = window.SkillsStack;
+  const Experience = window.Experience;
+  const Blog = window.Blog;
+  const UsesSetup = window.UsesSetup;
+  const NotFound = window.NotFound;
+
+  const renderActivePage = () => {
+    switch (currentPage) {
+      case 'home':
+        return <Home />;
+      case 'skills':
+        return <SkillsStack />;
+      case 'experience':
+        return <Experience />;
+      case 'galeri':
+        return <Gallery />;
+      case 'blog':
+        return <Blog />;
+      case 'uses':
+        return <UsesSetup />;
+      case 'form':
+        return <ContactForm />;
+      case '404':
+        return <NotFound />;
+      default:
+        return <NotFound />;
+    }
+  };
+
+  return (
+    <div className="d-flex flex-column min-vh-100">
+      <Navbar
+        currentPage={currentPage}
+        onOpenProfile={() => setIsProfileOpen(true)}
+      />
+      <ProfileOffcanvas
+        isOpen={isProfileOpen}
+        onClose={() => setIsProfileOpen(false)}
+      />
+      <div className="flex-grow-1">
+        {renderActivePage()}
+      </div>
+      <Footer />
+      <BackToTop />
+    </div>
+  );
+};
+
+const rootElement = document.getElementById('root');
+if (rootElement) {
+  ReactDOM.createRoot(rootElement).render(<App />);
+}
+
+    </script>
+  </body>
+</html>
