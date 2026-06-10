@@ -81,7 +81,7 @@ const Home = () => {
                     style={{ display: activeMobileAcc === 1 ? 'block' : 'none' }}
                   >
                     <div className="accordion-body">
-                      <img src="https://github-readme-streak-stats.herokuapp.com/?user=NickyIno&theme=tokyonight" alt="GitHub streak" className="w-100 img-fluid" loading="lazy" />
+                      <img src="https://streak-stats.demolab.com/?user=NickyIno&theme=tokyonight" alt="GitHub streak" className="w-100 img-fluid" loading="lazy" />
                     </div>
                   </div>
                 </div>
@@ -121,7 +121,7 @@ const Home = () => {
                   <p className="card-text small mb-0">Seorang anak STEM, tertarik pada hampir semua bidang STEM walaupun tahu harus memiliki salah satu sebagai fokus utama.</p>
                 </div>
               </div>
-              <img src="https://github-readme-stats-lyart-iota-28.vercel.app/api/top-langs/?username=NickyIno&layout=compact&theme=tokyonight&v=1" alt="GitHub stats" className="w-100 img-fluid rounded shadow-sm border border-neon mb-2" loading="lazy" />
+              <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=NickyIno&layout=compact&theme=tokyonight" alt="GitHub stats" className="w-100 img-fluid rounded shadow-sm border border-neon mb-2" loading="lazy" />
               <p className="text-center small neon-dim mb-0">Most repos are private due to NDA</p>
             </AnimatedSection>
           </div>

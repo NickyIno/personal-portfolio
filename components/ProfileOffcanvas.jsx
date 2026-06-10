@@ -38,7 +38,7 @@ const ProfileOffcanvas = ({ isOpen, onClose }) => {
             </div>
           </div>
           <img
-            src="https://github-readme-stats-lyart-iota-28.vercel.app/api/top-langs/?username=NickyIno&layout=compact&theme=tokyonight&v=1"
+            src="https://github-readme-stats.vercel.app/api/top-langs/?username=NickyIno&layout=compact&theme=tokyonight"
             alt="GitHub stats"
             className="w-100 img-fluid mb-2 rounded border border-neon"
           />
