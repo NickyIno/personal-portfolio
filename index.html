@@ -1568,20 +1568,20 @@ const Footer = () => {
         <div className="row g-4 mb-4">
           <div className="col-12 col-md-4">
             <div className="font-mono fw-bold neon fs-5 mb-2">
-              Nicky <span className="blink">_&lt;</span>
+              NickyIno <span className="blink">_&lt;</span>
             </div>
             <p className="small neon-dim lh-base mb-0">
               Reffalino Nicky Chandra<br />
-              STEM enthusiast &amp; aspiring developer.<br />
-              Karanganyar, Indonesia.
+              Systems Engineering &amp; Backend Architecture.<br />
+              Karanganyar, ID.
             </p>
           </div>
 
           <div className="col-6 col-md-4">
-            <h6 className="neon text-uppercase small fw-semibold border-bottom border-neon pb-2 mb-3" style={{ letterSpacing: '0.15em' }}>
-              Navigasi
+            <h6 className="neon text-uppercase small fw-semibold border-bottom border-neon pb-2 mb-3 font-mono" style={{ letterSpacing: '0.15em' }}>
+              0x05_Navigation
             </h6>
-            <ul className="list-unstyled d-flex flex-column gap-1">
+            <ul className="list-unstyled d-flex flex-column gap-1 font-mono">
               {navItems.map((item) => (
                 <li key={item.key}>
                   <a href={item.href} className="footer-nav-link small text-decoration-none">&gt; {item.label}</a>
@@ -1591,8 +1591,8 @@ const Footer = () => {
           </div>
 
           <div className="col-6 col-md-4">
-            <h6 className="neon text-uppercase small fw-semibold border-bottom border-neon pb-2 mb-3" style={{ letterSpacing: '0.15em' }}>
-              Kontak &amp; Sosial
+            <h6 className="neon text-uppercase small fw-semibold border-bottom border-neon pb-2 mb-3 font-mono" style={{ letterSpacing: '0.15em' }}>
+              0x06_Social_Endpoints
             </h6>
             <div className="d-flex gap-2 flex-wrap">
               {socialLinks.map((link) => (
@@ -1613,11 +1613,11 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="d-flex justify-content-between align-items-center flex-wrap gap-2 pt-3 border-top border-neon">
-          <p className="small mb-0 neon-dim">&copy; {currentYear} Reffalino Nicky Chandra. All rights reserved.</p>
-          <div className="d-flex align-items-center gap-2 small neon-dim">
+        <div className="d-flex justify-content-between align-items-center flex-wrap gap-2 pt-3 border-top border-neon font-mono">
+          <p className="small mb-0 neon-dim">&copy; {currentYear} NickyIno. Systems compiled successfully.</p>
+          <div className="d-flex align-items-center gap-2 small text-success">
             <span className="neon-dot" aria-hidden="true"></span>
-            Available for collaboration
+            LISTENING_FOR_COLLAB
           </div>
         </div>
       </div>
@@ -1626,7 +1626,6 @@ const Footer = () => {
 };
 
 window.Footer = Footer;
-
     </script>
     <script type="text/babel" data-presets="react">
 const App = () => {
