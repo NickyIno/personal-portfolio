@@ -6,13 +6,13 @@ const COMPONENTS = path.join(ROOT, 'components');
 
 const SITE_CONFIG = `
 window.SITE_NAV = [
-  { key: 'home', label: 'Beranda', href: '#home' },
+  { key: 'home', label: 'Home', href: '#home' },
   { key: 'skills', label: 'Skills', href: '#skills' },
   { key: 'experience', label: 'Experience', href: '#experience' },
-  { key: 'galeri', label: 'Galeri', href: '#galeri' },
+  { key: 'galeri', label: 'Gallery', href: '#galeri' },
   { key: 'blog', label: 'Blog', href: '#blog' },
   { key: 'uses', label: 'Uses', href: '#uses' },
-  { key: 'form', label: 'Kontak', href: '#form' }
+  { key: 'form', label: 'Contact', href: '#form' }
 ];
 
 window.VALID_PAGES = ['home', 'skills', 'experience', 'galeri', 'blog', 'uses', 'form'];

@@ -33,7 +33,7 @@ const ProfileOffcanvas = ({ isOpen, onClose }) => {
             <div className="card-body">
               <h5 className="card-title neon">Reffalino Nicky Chandra</h5>
               <p className="card-text small mb-0">
-                Seorang anak STEM, tertarik pada hampir semua bidang STEM walaupun tahu harus memiliki salah satu sebagai fokus utama.
+                  We're all being automated by a broken society. I don't follow the curriculum of a rigged game—I look at the source code, find the exploits, and refuse to accept the default settings.
               </p>
             </div>
           </div>

@@ -2,44 +2,44 @@ const SkillsStack = () => {
   const AnimatedSection = window.AnimatedSection;
   const Achievements = window.Achievements;
 
-  // PLACEHOLDER: update proficiency levels and categories with real data
+  // Real data arrays aligned with system preferences and runtime efficiency
   const categories = [
     {
-      name: 'Frontend',
+      name: '0x01_Core_Backend',
       skills: [
-        { name: 'HTML / CSS', level: 90 },
-        { name: 'JavaScript', level: 85 },
-        { name: 'React', level: 75 },
-        { name: 'Bootstrap', level: 88 },
-        { name: 'Tailwind CSS', level: 50 }
+        { name: 'Go (Golang)', level: 65 },
+        { name: 'Node.js & Express', level: 85 },
+        { name: 'PHP & Laravel', level: 50 },
+        { name: 'Redis Caching & Pub/Sub', level: 60 },
+        { name: 'MongoDB / NoSQL', level: 75 },
+        { name: 'MySQL & Relational Queries', level: 82 }
       ]
     },
     {
-      name: 'Backend',
+      name: '0x02_SecOps_&_Kernel',
       skills: [
-        { name: 'PHP', level: 80 },
-        { name: 'Laravel', level: 55 },
-        { name: 'Node.js', level: 70 },
-        { name: 'MySQL', level: 82 },
-        { name: 'CodeIgniter 3', level: 75 }
+        { name: 'Linux Kernel & Env', level: 95 },
+        { name: 'Red Teaming & Network Recon', level: 85 },
+        { name: 'CTF Exploit & Binary Analysis', level: 80 },
+        { name: 'Nmap / Metasploit / Gobuster / Burp Suite', level: 82 }
       ]
     },
     {
-      name: 'Cybersecurity',
+      name: '0x03_UI_Layout_&_Scripting',
       skills: [
-        { name: 'CTF / PicoCTF', level: 80 },
-        { name: 'Linux CLI', level: 95 },
-        { name: 'Penetration Testing', level: 65 },
-        { name: 'Network Basics', level: 70 }
+        { name: 'Asynchronous JavaScript (ES6+)', level: 85 },
+        { name: 'React.js Engine', level: 75 },
+        { name: 'Tailwind CSS & Utility Frameworks', level: 50 },
+        { name: 'Modern PHP Core', level: 80 }
       ]
     },
     {
-      name: 'Tools & Other',
+      name: '0x04_Environment_&_Tools',
       skills: [
-        { name: 'Git / GitHub', level: 88 },
-        { name: 'VS Code / Cursor', level: 92 },
-        { name: 'Python', level: 78 },
-        { name: 'IoT Basics', level: 45 }
+        { name: 'Neovim (AstroNvim)', level: 90 },
+        { name: 'Git Workflow & CI/CD Logic', level: 88 },
+        { name: 'Hyprland & WM Custom Tiling', level: 85 },
+        { name: 'Hardware Abstraction / Microcontrollers', level: 45 }
       ]
     }
   ];
@@ -49,16 +49,16 @@ const SkillsStack = () => {
   return (
     <main className="container pb-4">
       <header className="mb-4 animate__animated animate__fadeInLeft">
-        <h1 className="h2 neon border-bottom border-neon pb-2">Skills &amp; Tech Stack</h1>
-        <p className="small neon-dim mb-0">Teknologi yang saya gunakan dan terus kembangkan — dari web development hingga cybersecurity.</p>
+        <h1 className="h2 neon border-bottom border-neon pb-2">Skills Matrix &amp; Stack Architecture</h1>
+        <p className="small neon-dim mb-0">Hardware control interfaces, backend memory management, and defensive penetration testing frameworks.</p>
       </header>
 
       <AnimatedSection animationClass="animate__fadeInUp" delay="100ms">
         <div className="skill-tags-cloud mb-4 p-4 rounded-4 bg-dark2 border border-neon">
-          <h2 className="h6 neon font-mono text-uppercase mb-3">&gt; Stack Overview</h2>
+          <h2 className="h6 neon font-mono text-uppercase mb-3">&gt; Global System Dependencies</h2>
           <div className="d-flex flex-wrap gap-2">
             {allTags.map((tag, i) => (
-              <span className="skill-tag badge rounded-pill border border-neon px-3 py-2" key={i}>{tag}</span>
+              <span className="skill-tag badge rounded-pill border border-neon px-3 py-2 font-mono" key={i}>{tag}</span>
             ))}
           </div>
         </div>
@@ -73,7 +73,7 @@ const SkillsStack = () => {
                 {cat.skills.map((skill, si) => (
                   <div className="mb-3" key={si}>
                     <div className="d-flex justify-content-between mb-1 small">
-                      <span className="neon-dim">{skill.name}</span>
+                      <span className="neon-dim font-mono">{skill.name}</span>
                       <span className="neon font-mono">{skill.level}%</span>
                     </div>
                     <div className="progress bg-dark3" style={{ height: '6px', border: '1px solid var(--bs-border-color)' }}>

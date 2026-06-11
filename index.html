@@ -35,13 +35,13 @@
 const { useState, useEffect, useRef } = React;
 
 window.SITE_NAV = [
-  { key: 'home', label: 'Beranda', href: '#home' },
+  { key: 'home', label: 'Home', href: '#home' },
   { key: 'skills', label: 'Skills', href: '#skills' },
   { key: 'experience', label: 'Experience', href: '#experience' },
-  { key: 'galeri', label: 'Galeri', href: '#galeri' },
+  { key: 'galeri', label: 'Gallery', href: '#galeri' },
   { key: 'blog', label: 'Blog', href: '#blog' },
   { key: 'uses', label: 'Uses', href: '#uses' },
-  { key: 'form', label: 'Kontak', href: '#form' }
+  { key: 'form', label: 'Contact', href: '#form' }
 ];
 
 window.VALID_PAGES = ['home', 'skills', 'experience', 'galeri', 'blog', 'uses', 'form'];
@@ -133,7 +133,7 @@ const ProfileOffcanvas = ({ isOpen, onClose }) => {
             <div className="card-body">
               <h5 className="card-title neon">Reffalino Nicky Chandra</h5>
               <p className="card-text small mb-0">
-                Seorang anak STEM, tertarik pada hampir semua bidang STEM walaupun tahu harus memiliki salah satu sebagai fokus utama.
+                  We're all being automated by a broken society. I don't follow the curriculum of a rigged game—I look at the source code, find the exploits, and refuse to accept the default settings.
               </p>
             </div>
           </div>
@@ -250,7 +250,14 @@ const Hero = () => {
   const [charIndex, setCharIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const words = ["Nicky", "a STEM Student.", "a Cybersecurity Enthusiast.", "a Web Developer.", "a Femboy Lover"];
+  // Sharper, technical strings tailored to your focus
+  const words = [
+    "NickyIno.", 
+    "a Software Engineer.", 
+    "a Linux Enthusiast.", 
+    "a Red Team Penetration Tester.", 
+    "a MERN Stack Developer."
+  ];
   const typingDelay = 100;
   const erasingDelay = 50;
   const newWordDelay = 2000;
@@ -299,15 +306,16 @@ const Hero = () => {
   }, []);
 
   const skills = [
-    { name: 'TALL Stack (Tailwind, Alpine.js, Laravel, Livewire)', percent: 50 },
-    { name: 'Cybersecurity (Penetration Testing, CTF)', percent: 80 },
-    { name: 'MERN Stack (MongoDB, Express.js, React, Node.js)', percent: 75 },
-    { name: 'Linux & Command Line', percent: 95 },
+    { name: 'Linux Kernel & Window Managers', percent: 95 },
+    { name: 'Cybersecurity (Red Teaming, Network Penetration, CTF)', percent: 85 },
+    { name: 'MERN Stack (Asynchronous JS, MongoDB, Node.js)', percent: 80 },
+    { name: 'TALL Stack (Tailwind CSS, Alpine.js, Laravel, Liveware)', percent: 50 },
+    { name: '.NET Ecosystem (C#, ASP.NET, Blazor)', percent: 20 }
   ];
 
   return (
     <div className="hero-wrapper-redesigned rounded-4 mb-4">
-      {/* Redesigned cyber backgrounds */}
+      {/* Cyber backgrounds */}
       <div className="hero-grid-bg-enhanced"></div>
       <div className="hero-pulse-ring"></div>
       <div className="hero-pulse-ring-inner"></div>
@@ -319,11 +327,11 @@ const Hero = () => {
           {/* Left Info Column */}
           <div className="col-lg-7 text-start animate__animated animate__fadeInLeft">
             <span className="badge rounded-pill bg-dark border border-neon text-light px-3 py-2 mb-3 font-mono text-uppercase" style={{ letterSpacing: '0.05em' }}>
-              <span className="terminal-status-indicator"></span>SYS_INITIALIZED: ACTIVE
+              <span className="terminal-status-indicator"></span>SYS_INITIALIZED: ACTIVE_SHELL
             </span>
             
             <h1 className="hero-title-gradient mb-2">
-              Selamat Datang
+              Root Access Granted
             </h1>
             
             <p className="fs-4 text-light mb-3 font-mono" style={{ minHeight: '2.2rem' }}>
@@ -332,15 +340,15 @@ const Hero = () => {
             </p>
             
             <p className="text-secondary small mb-4 lh-lg" style={{ maxWidth: '540px' }}>
-              Selamat datang di portofolio STEM. Saya mengeksplorasi Web Development, Cybersecurity, dan IoT dengan memegang teguh standar kurikulum, integritas kode, dan efisiensi teknologi.
+              Dissecting backend architectures, executing network vulnerability patches, and configuring low-level terminal interfaces. I write logic that ignores institutional spoon-feeding, bypassing legacy boundaries to construct pure, raw runtime code.
             </p>
             
             <div className="d-flex flex-wrap gap-3">
               <a href="#skills" className="btn btn-neon-outline px-4 font-mono text-uppercase d-inline-flex align-items-center justify-content-center">
-                <span>&gt; Lihat Skills</span>
+                <span>&gt; Query Skills</span>
               </a>
               <a href="#form" className="btn btn-outline-light px-4 font-mono text-uppercase d-inline-flex align-items-center justify-content-center" style={{ minHeight: '44px' }}>
-                <span>&gt; Hubungi Saya</span>
+                <span>&gt; Ping Node</span>
               </a>
             </div>
           </div>
@@ -349,29 +357,29 @@ const Hero = () => {
           <div className="col-lg-5 animate__animated animate__fadeInRight">
             <div className="hero-glowing-card font-mono text-start">
               <div className="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom border-neon">
-                <span className="text-secondary small">&gt;_ SYSTEM_DIAGNOSTIC</span>
+                <span className="text-secondary small">&gt;_ INSTANCE_DIAGNOSTIC</span>
                 <span className="badge bg-neon-dark text-neon border border-neon py-1 px-2 small animate__animated animate__pulse animate__infinite">SECURE</span>
               </div>
               
               <div className="d-flex flex-column gap-3 small">
                 <div>
                   <div className="d-flex justify-content-between mb-1 text-secondary">
-                    <span>USER:</span>
+                    <span>HOST_HANDLE:</span>
                     <span className="neon">NICKY_INO</span>
                   </div>
                   <div className="d-flex justify-content-between mb-1 text-secondary">
-                    <span>STATUS:</span>
-                    <span className="text-success">ONLINE</span>
+                    <span>SHELL_STATUS:</span>
+                    <span className="text-success">UNRESTRICTED</span>
                   </div>
                   <div className="d-flex justify-content-between mb-1 text-secondary">
-                    <span>LOCATION:</span>
+                    <span>GEO_LOCATION:</span>
                     <span className="neon-dim">KARANGANYAR, ID</span>
                   </div>
                 </div>
                 
                 <div className="border-top border-neon pt-3">
                   <span className="d-block mb-2 text-secondary text-uppercase">
-                    &gt; STEM Skill Index
+                    &gt; System Efficiency Matrix
                   </span>
 
                   {skills.map((skill, index) => (
@@ -401,7 +409,6 @@ const Hero = () => {
 };
 
 window.Hero = Hero;
-
     </script>
     <script type="text/babel" data-presets="react">
 const AboutMe = () => {
@@ -409,10 +416,7 @@ const AboutMe = () => {
     <div className="p-3 rounded shadow-sm mb-3 bg-dark2 border border-1 border-neon">
       <h2 className="h4 border-bottom border-neon pb-2 mb-3 neon">About Me</h2>
       <p className="small mb-0" style={{ lineHeight: '1.6' }}>
-        Halo! Saya Reffalino Nicky Chandra, seorang anak STEM yang memiliki ketertarikan luas pada dunia teknologi dan sains.
-        Saya senang mengeksplorasi berbagai bidang mulai dari Web Development, Cybersecurity, hingga IoT, meskipun saya menyadari
-        pentingnya memiliki satu fokus keahlian. Bagi saya, coding bukan sekadar tentang hasil akhir, melainkan proses memahami logika,
-        menyelesaikan masalah, dan terus beradaptasi dengan perkembangan sistem.
+        Hello Friends, I'm Nicky_Ino. I don't just write code; I dissect systems. While my hands are in Web Development, Cybersecurity, and IoT, I know the value of deep specialization. For me, syntax is secondary—it’s all about the underlying logic, breaking down complex problems, and adapting before the system leaves you behind
       </p>
     </div>
   );
@@ -450,32 +454,32 @@ const Prinsip = ({ view = 'desktop' }) => {
 
   const prinsipData = [
     {
-      id: 'cbp',
-      short_title: 'Curriculum-Bound',
-      title: 'Curriculum-Bound Principle',
-      text: 'Menjaga "kemurnian" hasil <b>Codingan Sekolah</b> dengan hanya menggunakan apa yang diajarkan. Kalau sekolah tidak mengajarkan, ya tidak akan dipakai di project sekolah.',
-      short_text: 'Menjaga "kemurnian" hasil Codingan Sekolah dengan hanya menggunakan apa yang diajarkan.'
+      id: 'oob',
+      short_title: 'Out-of-Bounds',
+      title: 'The Out-of-Bounds Principle',
+      text: 'Rejecting the compliance metrics of dead, legacy curricula. While institutions demand adherence to outdated tech debt, I engineer around their limitations to study modern engineering paradigms, serverless architectures, and real-world system optimization.',
+      short_text: 'Bypassing dead legacy institutional curricula to build modern tech debt-free systems.'
     },
     {
       id: 'drtw',
-      short_title: "Don't Reinvent the Wheel",
-      title: "Don't Reinvent the Wheel",
-      text: 'Menolak kebiasaan buang-buang waktu dengan menulis ulang logika yang sudah disempurnakan oleh ribuan engineer. Memilih reuse library — solusi yang stabil, aman, dan teruji.',
-      short_text: 'Memilih reuse library daripada menulis ulang logika dari nol.'
+      short_title: "DRYW Abstraction",
+      title: "Don't Reinvent the Wheel (DRYW)",
+      text: 'Refusing to waste execution cycles rewriting logic already perfected by thousands of senior architects. Prioritizing stable, secure, and production-tested library abstractions over manual, bug-prone system rebuilding.',
+      short_text: 'Leveraging established library ecosystems over writing redundant logic from scratch.'
     },
     {
       id: 'cia',
-      short_title: 'CIA',
+      short_title: 'CIA Triad',
       title: 'Confidentiality, Integrity, and Availability',
-      text: 'Prinsip CIA yang sering dipakai di cybersecurity, tapi juga berlaku di programming secara umum. Jaga integritas kode dan data, serta pastikan sistem tetap tersedia.',
-      short_text: 'Jaga kerahasiaan, integritas, dan ketersediaan sistem.'
+      text: 'Enforcing the fundamental pillars of defensive security operations at the root level of software engineering. Every backend service must explicitly maintain strict asset confidentiality, data mutation verification, and resilient uptime parameters.',
+      short_text: 'Implementing foundational security postures across system design and runtime memory.'
     }
   ];
 
   if (view === 'desktop') {
     return (
       <div className="p-3 rounded shadow-sm bg-dark2 border border-1 border-neon">
-        <h2 className="h4 border-bottom border-neon pb-2 mb-3 neon">Prinsip dalam Pemrograman</h2>
+        <h2 className="h4 border-bottom border-neon pb-2 mb-3 neon">Core System Principles</h2>
         {prinsipData.map((p, i) => (
           <div className="d-flex pt-3" key={p.id}>
             <div className={`pb-3 mb-0 small lh-sm ${i < prinsipData.length - 1 ? 'border-bottom border-neon' : ''} w-100`}>
@@ -501,13 +505,13 @@ const Prinsip = ({ view = 'desktop' }) => {
               onClick={() => setActiveTab(p.id)}
               style={{ minHeight: '44px' }}
             >
-              {p.short_title}
+              &gt;_ {p.short_title}
             </button>
           </li>
         ))}
       </ul>
       <div className="tab-content border-top border-neon pt-3">
-        <div className="tab-pane active fade show small lh-sm">
+        <div className="tab-pane active fade show small lh-sm text-secondary">
           {activePrinsip ? activePrinsip.short_text : ''}
         </div>
       </div>
@@ -516,13 +520,12 @@ const Prinsip = ({ view = 'desktop' }) => {
 };
 
 window.Prinsip = Prinsip;
-
     </script>
     <script type="text/babel" data-presets="react">
 const SnakeContribution = () => {
   return (
     <div className="row my-4">
-      <h2 className="h4 neon border-bottom border-neon pb-2 mb-3">Riwayat Kontribusi Github</h2>
+      <h2 className="h4 neon border-bottom border-neon pb-2 mb-3">Github Contribution</h2>
       <div className="col-12 p-0 rounded shadow-sm border border-neon bg-dark2 overflow-auto" style={{ minHeight: '200px' }}>
         <img 
           src="https://raw.githubusercontent.com/NickyIno/NickyIno/output/github-snake-dark.svg" 
@@ -579,31 +582,25 @@ window.StatsBar = StatsBar;
     </script>
     <script type="text/babel" data-presets="react">
 const Achievements = () => {
-  // PLACEHOLDER: replace with real certifications and awards
+  // Real recognition for breaking and building things
   const items = [
     {
       title: 'PicoCTF Participant',
       org: 'Carnegie Mellon Cylab',
-      year: '2024',
-      desc: 'Menyelesaikan berbagai challenge cybersecurity di platform PicoCTF.'
+      year: '2025',
+      desc: 'Exploiting vulnerabilities, breaking binaries, and solving cybersecurity challenges under pressure.'
     },
     {
-      title: 'STEM School Curriculum',
-      org: 'Sekolah Menengah',
-      year: '2023–now',
-      desc: 'Mengikuti kurikulum STEM dengan fokus pada pemrograman dan teknologi.'
+      title: 'PPLG Software Engineer',
+      org: 'Vocational High School (PPLG)',
+      year: '2025–Present',
+      desc: 'Surviving the mandatory curriculum while quietly overriding legacy standards with modern tech stacks.'
     },
     {
-      title: 'GitHub Active Contributor',
-      org: 'GitHub',
-      year: '2023–now',
-      desc: 'Mempertahankan streak commit dan menerbitkan project sekolah secara publik.'
-    },
-    {
-      title: 'Continuous Learning',
-      org: 'Self-paced Study',
-      year: '2024',
-      desc: 'Terus mengembangkan skill web development dan cybersecurity secara mandiri.'
+      title: 'Off-Grid Learning',
+      org: 'Self-Taught / Independent',
+      year: 'Continuous',
+      desc: 'Ignoring structured spoon-feeding to reverse'
     }
   ];
 
@@ -636,44 +633,44 @@ const SkillsStack = () => {
   const AnimatedSection = window.AnimatedSection;
   const Achievements = window.Achievements;
 
-  // PLACEHOLDER: update proficiency levels and categories with real data
+  // Real data arrays aligned with system preferences and runtime efficiency
   const categories = [
     {
-      name: 'Frontend',
+      name: '0x01_Core_Backend',
       skills: [
-        { name: 'HTML / CSS', level: 90 },
-        { name: 'JavaScript', level: 85 },
-        { name: 'React', level: 75 },
-        { name: 'Bootstrap', level: 88 },
-        { name: 'Tailwind CSS', level: 50 }
+        { name: 'Go (Golang)', level: 65 },
+        { name: 'Node.js & Express', level: 85 },
+        { name: 'PHP & Laravel', level: 50 },
+        { name: 'Redis Caching & Pub/Sub', level: 60 },
+        { name: 'MongoDB / NoSQL', level: 75 },
+        { name: 'MySQL & Relational Queries', level: 82 }
       ]
     },
     {
-      name: 'Backend',
+      name: '0x02_SecOps_&_Kernel',
       skills: [
-        { name: 'PHP', level: 80 },
-        { name: 'Laravel', level: 55 },
-        { name: 'Node.js', level: 70 },
-        { name: 'MySQL', level: 82 },
-        { name: 'CodeIgniter 3', level: 75 }
+        { name: 'Linux Kernel & Env', level: 95 },
+        { name: 'Red Teaming & Network Recon', level: 85 },
+        { name: 'CTF Exploit & Binary Analysis', level: 80 },
+        { name: 'Nmap / Metasploit / Gobuster / Burp Suite', level: 82 }
       ]
     },
     {
-      name: 'Cybersecurity',
+      name: '0x03_UI_Layout_&_Scripting',
       skills: [
-        { name: 'CTF / PicoCTF', level: 80 },
-        { name: 'Linux CLI', level: 95 },
-        { name: 'Penetration Testing', level: 65 },
-        { name: 'Network Basics', level: 70 }
+        { name: 'Asynchronous JavaScript (ES6+)', level: 85 },
+        { name: 'React.js Engine', level: 75 },
+        { name: 'Tailwind CSS & Utility Frameworks', level: 50 },
+        { name: 'Modern PHP Core', level: 80 }
       ]
     },
     {
-      name: 'Tools & Other',
+      name: '0x04_Environment_&_Tools',
       skills: [
-        { name: 'Git / GitHub', level: 88 },
-        { name: 'VS Code / Cursor', level: 92 },
-        { name: 'Python', level: 78 },
-        { name: 'IoT Basics', level: 45 }
+        { name: 'Neovim (AstroNvim)', level: 90 },
+        { name: 'Git Workflow & CI/CD Logic', level: 88 },
+        { name: 'Hyprland & WM Custom Tiling', level: 85 },
+        { name: 'Hardware Abstraction / Microcontrollers', level: 45 }
       ]
     }
   ];
@@ -683,16 +680,16 @@ const SkillsStack = () => {
   return (
     <main className="container pb-4">
       <header className="mb-4 animate__animated animate__fadeInLeft">
-        <h1 className="h2 neon border-bottom border-neon pb-2">Skills &amp; Tech Stack</h1>
-        <p className="small neon-dim mb-0">Teknologi yang saya gunakan dan terus kembangkan — dari web development hingga cybersecurity.</p>
+        <h1 className="h2 neon border-bottom border-neon pb-2">Skills Matrix &amp; Stack Architecture</h1>
+        <p className="small neon-dim mb-0">Hardware control interfaces, backend memory management, and defensive penetration testing frameworks.</p>
       </header>
 
       <AnimatedSection animationClass="animate__fadeInUp" delay="100ms">
         <div className="skill-tags-cloud mb-4 p-4 rounded-4 bg-dark2 border border-neon">
-          <h2 className="h6 neon font-mono text-uppercase mb-3">&gt; Stack Overview</h2>
+          <h2 className="h6 neon font-mono text-uppercase mb-3">&gt; Global System Dependencies</h2>
           <div className="d-flex flex-wrap gap-2">
             {allTags.map((tag, i) => (
-              <span className="skill-tag badge rounded-pill border border-neon px-3 py-2" key={i}>{tag}</span>
+              <span className="skill-tag badge rounded-pill border border-neon px-3 py-2 font-mono" key={i}>{tag}</span>
             ))}
           </div>
         </div>
@@ -707,7 +704,7 @@ const SkillsStack = () => {
                 {cat.skills.map((skill, si) => (
                   <div className="mb-3" key={si}>
                     <div className="d-flex justify-content-between mb-1 small">
-                      <span className="neon-dim">{skill.name}</span>
+                      <span className="neon-dim font-mono">{skill.name}</span>
                       <span className="neon font-mono">{skill.level}%</span>
                     </div>
                     <div className="progress bg-dark3" style={{ height: '6px', border: '1px solid var(--bs-border-color)' }}>
@@ -729,45 +726,44 @@ const SkillsStack = () => {
 };
 
 window.SkillsStack = SkillsStack;
-
     </script>
     <script type="text/babel" data-presets="react">
 const Experience = () => {
   const AnimatedSection = window.AnimatedSection;
 
-  // PLACEHOLDER: replace with real education and work history
+  // Chronological log of execution and system exploration
   const timeline = [
     {
-      period: '2024 – Sekarang',
-      title: 'STEM Student — Web & Cybersecurity',
-      org: 'Sekolah Menengah',
-      type: 'education',
+      period: '2025 – Present',
+      title: 'Systems & Software Engineering',
+      org: 'Vocational High School (PPLG)',
+      type: 'root_env',
       points: [
-        'Mempelajari web development (HTML, CSS, JS, PHP, React)',
-        'Eksplorasi cybersecurity melalui CTF dan Linux',
-        'Membangun project sekolah: CMS, Buku Kas, Portfolio'
+        'Developing backends and optimizing architectures while actively engineering around legacy institutional stacks.',
+        'Deep-diving into network exploration, binary analysis, and security operations using custom terminal environments.',
+        'Building dynamic, production-ready system applications including standalone web platforms and data-driven dashboards.'
       ]
     },
     {
-      period: '2024',
-      title: 'Self-taught Developer',
-      org: 'Personal Learning',
-      type: 'learning',
+      period: '2025 – Present',
+      title: 'Independent Stack Architecture & Red Teaming',
+      org: 'Off-Grid Development',
+      type: 'sub_shell',
       points: [
-        'Mempelajari MERN stack dan Laravel secara mandiri',
-        'Berpartisipasi di PicoCTF dan latihan penetration testing',
-        'Mengembangkan workflow Git/GitHub untuk version control'
+        'Self-studying the MERN stack ecosystem, asynchronous execution, and modern serverless application logic.',
+        'Competing in PicoCTF challenges; executing penetration testing scripts, and analyzing algorithmic vulnerabilities.',
+        'Standardizing Git configurations and maintaining continuous integration across open-source configurations.'
       ]
     },
     {
       period: '2023',
-      title: 'First Steps in Programming',
-      org: 'School & Online Resources',
-      type: 'education',
+      title: 'First Compilation & Core Logic Execution',
+      org: 'Local Environment Setup',
+      type: 'init_process',
       points: [
-        'Memulai dengan Python dan logika pemrograman dasar',
-        'Membuat portofolio web semester 1',
-        'Memahami fundamental algoritma dan struktur data'
+        'Initialized programming logic utilizing Python to automate scripts and handle early data manipulation.',
+        'Deployed the initial iteration of a clean, terminal-inspired web portfolio layout.',
+        'Mastered fundamental data structures, low-level flow control, and core algorithmic parameters.'
       ]
     }
   ];
@@ -775,8 +771,8 @@ const Experience = () => {
   return (
     <main className="container pb-4">
       <header className="mb-4 animate__animated animate__fadeInLeft">
-        <h1 className="h2 neon border-bottom border-neon pb-2">Experience &amp; Timeline</h1>
-        <p className="small neon-dim mb-0">Perjalanan belajar dan pengembangan saya di dunia STEM dan teknologi.</p>
+        <h1 className="h2 neon border-bottom border-neon pb-2">Runtime Log &amp; Timeline</h1>
+        <p className="small neon-dim mb-0">Chronological history of system tracking, independent builds, and educational execution milestones.</p>
       </header>
 
       <div className="timeline">
@@ -806,53 +802,52 @@ const Experience = () => {
 };
 
 window.Experience = Experience;
-
     </script>
     <script type="text/babel" data-presets="react">
 const Blog = () => {
   const AnimatedSection = window.AnimatedSection;
 
-  // PLACEHOLDER: replace with real blog posts when available
+  // Real, unfiltered logs from inside the network
   const posts = [
     {
       slug: 'getting-started-with-ctf',
-      title: 'Getting Started with CTF as a Student',
+      title: 'Infiltrating the Grid: A Realist\'s Approach to CTFs',
       date: '15 Mar 2025',
       readTime: '5 min',
-      excerpt: 'Catatan pertama saya tentang memulai perjalanan Capture The Flag — tools, mindset, dan resource yang membantu.',
-      tags: ['Cybersecurity', 'CTF', 'Learning']
+      excerpt: 'My raw logs on entering the Capture The Flag scene—stripping away the corporate fluff to focus on the actual tools, adversarial mindset, and infrastructure.',
+      tags: ['Cybersecurity', 'Infosec', 'RedTeaming']
     },
     {
       slug: 'why-i-chose-react',
-      title: 'Why I Chose React for My Portfolio',
-      date: '2 Feb 2025',
+      title: 'Zero Build Steps: Running React Raw via Babel Standalone',
+      date: '02 Feb 2025',
       readTime: '4 min',
-      excerpt: 'Alasan saya membangun ulang portofolio dengan React dan Babel Standalone tanpa build step.',
-      tags: ['React', 'Web Dev', 'Portfolio']
+      excerpt: 'Why I threw out heavy node_modules and Webpack bloat. Rebuilding my space using pure, uncompiled runtime logic because a portfolio shouldn’t feel like an enterprise trap.',
+      tags: ['React.js', 'Frontend', 'NoBloat']
     },
     {
       slug: 'curriculum-bound-principle',
-      title: 'Curriculum-Bound Principle in Practice',
+      title: 'The Curriculum Rebellion: Breaking Out of the Sandbox',
       date: '10 Jan 2025',
       readTime: '6 min',
-      excerpt: 'Refleksi tentang Curriculum-Bound Principle dan kapan boleh melangkah lebih jauh dari materi sekolah.',
-      tags: ['STEM', 'Philosophy', 'Learning']
+      excerpt: 'An honest critique of institutional guardrails. Why limiting your engineering stack to whatever a legacy syllabus dictates is a slow death for real intellect.',
+      tags: ['Philosophy', 'Rant', 'Education']
     },
     {
       slug: 'linux-cli-essentials',
-      title: 'Linux CLI Essentials for Beginners',
+      title: 'Terminal Obsession: Core Linux Utilities I Actually Use',
       date: '20 Dec 2024',
       readTime: '7 min',
-      excerpt: 'Perintah terminal yang paling sering saya gunakan saat belajar cybersecurity dan development.',
-      tags: ['Linux', 'CLI', 'Tutorial']
+      excerpt: 'No graphical interfaces, no training wheels. These are the command-line arguments and low-level binaries holding my daily workflow together.',
+      tags: ['Linux', 'Arch', 'CLI']
     }
   ];
 
   return (
     <main className="container pb-4">
       <header className="mb-4 animate__animated animate__fadeInLeft">
-        <h1 className="h2 neon border-bottom border-neon pb-2">Blog &amp; Writing</h1>
-        <p className="small neon-dim mb-0">Catatan belajar, refleksi project, dan tutorial singkat. {/* PLACEHOLDER posts */}</p>
+        <h1 className="h2 neon border-bottom border-neon pb-2">Intercepted Logs &amp; Rants</h1>
+        <p className="small neon-dim mb-0">Documenting system vulnerabilities, architectural thoughts, and deep-dives outside the standard curriculum.</p>
       </header>
 
       <div className="row g-4">
@@ -865,7 +860,7 @@ const Blog = () => {
                   <span>{post.readTime} read</span>
                 </div>
                 <h2 className="h5 neon mb-2">{post.title}</h2>
-                <p className="small text-secondary flex-grow-1 mb-3">{post.excerpt}</p>
+                <p className="small mb-3 text-secondary flex-grow-1">{post.excerpt}</p>
                 <div className="d-flex flex-wrap gap-2 mb-3">
                   {post.tags.map((tag, ti) => (
                     <span className="badge rounded-pill border border-neon text-light px-2 py-1 small" key={ti}>{tag}</span>
@@ -874,9 +869,9 @@ const Blog = () => {
                 <button
                   type="button"
                   className="btn btn-neon-outline btn-sm align-self-start font-mono"
-                  onClick={() => alert('PLACEHOLDER: Blog post "' + post.title + '" — full article coming soon.')}
+                  onClick={() => alert('Access Denied: Full entry "' + post.title + '" is currently encrypted or under staging.')}
                 >
-                  &gt; Read More
+                  &gt; Decrypt Log
                 </button>
               </article>
             </AnimatedSection>
@@ -888,35 +883,37 @@ const Blog = () => {
 };
 
 window.Blog = Blog;
-
     </script>
     <script type="text/babel" data-presets="react">
 const UsesSetup = () => {
   const AnimatedSection = window.AnimatedSection;
 
-  // PLACEHOLDER: update with your actual gear and software
+  // PLACEHOLDER: update with your actual gear and software :p
   const categories = [
     {
       title: 'Hardware',
       items: [
-        { name: 'Laptop', detail: 'Windows 11 — primary dev machine' },
-        { name: 'Keyboard', detail: 'Mechanical keyboard for coding sessions' },
-        { name: 'Headphones', detail: 'For focus during CTF and coding' }
+        { name: 'Laptop', detail: 'Windows 11 and Linux — primary dev machine' },
+        { name: 'Keyboard', detail: 'Keyboard for coding sessions' },
+        { name: 'Headphones', detail: 'For focus during CTF and coding' },
+        { name: 'Microcontroller Kits', detail: 'For hardware hacking and learning' }
+
       ]
     },
     {
       title: 'Software',
       items: [
-        { name: 'VS Code / Cursor', detail: 'Primary IDE with cyber-dark theme' },
+        { name: 'VS Code / Cursor / Antigravity / Astrovim', detail: 'Primary IDE with cyber-dark theme' },
+        { name: 'Docker', detail : 'For it works on every machine'},
         { name: 'Laragon', detail: 'Local PHP/MySQL development stack' },
         { name: 'Git & GitHub', detail: 'Version control and portfolio hosting' },
-        { name: 'Kali Linux (VM)', detail: 'Cybersecurity practice environment' }
+        { name: 'Kali Linux', detail: 'Cybersecurity practice environment' }
       ]
     },
     {
       title: 'Browser & Tools',
       items: [
-        { name: 'Chrome / Firefox', detail: 'DevTools for debugging' },
+        { name: 'Firefox', detail: 'DevTools for debugging' },
         { name: 'Postman', detail: 'API testing (when needed)' },
         { name: 'Figma', detail: 'Occasional UI mockups' }
       ]
@@ -935,7 +932,7 @@ const UsesSetup = () => {
     <main className="container pb-4">
       <header className="mb-4 animate__animated animate__fadeInLeft">
         <h1 className="h2 neon border-bottom border-neon pb-2">Uses / Setup</h1>
-        <p className="small neon-dim mb-0">Tools, gear, dan software yang saya gunakan sehari-hari untuk belajar dan membangun project.</p>
+        <p className="small neon-dim mb-0">Tools, gear, and software I use daily for learning and building projects.</p>
       </header>
 
       <div className="row g-4">
@@ -995,6 +992,7 @@ const Home = () => {
 
       <div className="row mt-3">
         <div className="col-lg-8 col-12">
+          {/* Desktop Layout Viewport */}
           <div className="d-none d-lg-block">
             <AnimatedSection animationClass="animate__fadeInLeft" delay="100ms">
               <AboutMe />
@@ -1009,6 +1007,7 @@ const Home = () => {
             </AnimatedSection>
           </div>
 
+          {/* Mobile Layout Viewport / Handled via Accordion Panels */}
           <div className="d-block d-lg-none my-3">
             <AnimatedSection animationClass="animate__zoomIn" delay="200ms">
               <div className="accordion" id="mobileContentAccordion">
@@ -1020,7 +1019,7 @@ const Home = () => {
                       onClick={() => toggleMobileAcc(0)}
                       style={{ minHeight: '44px' }}
                     >
-                      About Me
+                      System Profile
                     </button>
                   </h2>
                   <div
@@ -1029,7 +1028,7 @@ const Home = () => {
                   >
                     <div className="accordion-body">
                       <p className="small mb-0" style={{ lineHeight: '1.6' }}>
-                        Halo! Saya Reffalino Nicky Chandra, seorang anak STEM yang memiliki ketertarikan luas pada dunia teknologi dan sains. Saya senang mengeksplorasi Web Development, Cybersecurity, hingga IoT.
+                        Host Node: Reffalino Nicky Chandra. Operating within the STEM domain with a deep bias toward lower-level systems engineering, custom Unix setups, network operations, and asynchronous architecture. 
                       </p>
                     </div>
                   </div>
@@ -1043,7 +1042,7 @@ const Home = () => {
                       onClick={() => toggleMobileAcc(1)}
                       style={{ minHeight: '44px' }}
                     >
-                      GitHub Streak
+                      Commit Log / Streak
                     </button>
                   </h2>
                   <div
@@ -1051,7 +1050,7 @@ const Home = () => {
                     style={{ display: activeMobileAcc === 1 ? 'block' : 'none' }}
                   >
                     <div className="accordion-body">
-                      <img src="https://streak-stats.demolab.com/?user=NickyIno&theme=tokyonight" alt="GitHub streak" className="w-100 img-fluid" loading="lazy" />
+                      <img src="https://streak-stats.demolab.com/?user=NickyIno&theme=tokyonight" alt="GitHub streak matrix" className="w-100 img-fluid" loading="lazy" />
                     </div>
                   </div>
                 </div>
@@ -1064,7 +1063,7 @@ const Home = () => {
                       onClick={() => toggleMobileAcc(2)}
                       style={{ minHeight: '44px' }}
                     >
-                      Prinsip dalam Pemrograman
+                      Core Architecture Principles
                     </button>
                   </h2>
                   <div
@@ -1081,18 +1080,19 @@ const Home = () => {
           </div>
         </div>
 
+        {/* Sidebar Diagnostics Column */}
         <div className="col-lg-4 col-12" id="about-sidebar">
           <div className="d-none d-lg-block my-3">
             <AnimatedSection animationClass="animate__fadeInRight" delay="200ms">
               <div className="card bg-dark2 border border-neon mb-3">
-                <img src="images/Kessoku%20Band!.jpg" className="card-img-top img-fluid" alt="Foto profil" />
+                <img src="images/Kessoku%20Band!.jpg" className="card-img-top img-fluid" alt="Avatar payload" />
                 <div className="card-body">
                   <h2 className="card-title h5 neon">Reffalino Nicky Chandra</h2>
-                  <p className="card-text small mb-0">Seorang anak STEM, tertarik pada hampir semua bidang STEM walaupun tahu harus memiliki salah satu sebagai fokus utama.</p>
+                  <p className="card-text small mb-0">System operator navigating the cross-sections of computing and applied engineering. Rejects basic curriculum constraints; prioritizing efficient library abstraction over wheel-reinvention.</p>
                 </div>
               </div>
-              <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=NickyIno&layout=compact&theme=tokyonight" alt="GitHub stats" className="w-100 img-fluid rounded shadow-sm border border-neon mb-2" loading="lazy" />
-              <p className="text-center small neon-dim mb-0">Most repos are private due to NDA</p>
+              <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=NickyIno&layout=compact&theme=tokyonight" alt="GitHub environment analytics" className="w-100 img-fluid rounded shadow-sm border border-neon mb-2" loading="lazy" />
+              <p className="text-center small neon-dim mb-0">Critical repositories isolated under private status</p>
             </AnimatedSection>
           </div>
         </div>
@@ -1106,7 +1106,6 @@ const Home = () => {
 };
 
 window.Home = Home;
-
     </script>
     <script type="text/babel" data-presets="react">
 const Gallery = () => {
@@ -1211,17 +1210,18 @@ window.Gallery = Gallery;
     <script type="text/babel" data-presets="react">
 const ContactForm = () => {
   const [formData, setFormData] = useState({
-    nama: '',
+    name: '',
     email: '',
-    topik: '',
-    pesan: '',
-    setuju: false
+    topic: '',
+    message: '',
+    agree: false
   });
 
   const [errors, setErrors] = useState([]);
   const [sent, setSent] = useState(false);
 
-  const topics = ['Kolaborasi', 'Pertanyaan', 'Feedback', 'Mobile Dev', 'Lainnya'];
+  // Cleaned up the categories to sound sharper
+  const topics = ['Collaboration', 'Inquiry', 'Feedback', 'Systems / Architecture', 'Other'];
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -1235,21 +1235,21 @@ const ContactForm = () => {
     e.preventDefault();
     const newErrors = [];
 
-    if (formData.nama.trim().length < 2) {
-      newErrors.push('Nama wajib diisi (minimal 2 karakter).');
+    if (formData.name.trim().length < 2) {
+      newErrors.push('Identity verification failed: Name requires at least 2 characters.');
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email.trim())) {
-      newErrors.push('Email tidak valid.');
+      newErrors.push('Invalid syntax: Email format not recognized.');
     }
 
-    if (formData.pesan.trim() === '') {
-      newErrors.push('Pesan wajib diisi.');
+    if (formData.message.trim() === '') {
+      newErrors.push('Payload error: Message payload cannot be empty.');
     }
 
-    if (!formData.setuju) {
-      newErrors.push('Anda harus menyetujui penggunaan data untuk keperluan demo.');
+    if (!formData.agree) {
+      newErrors.push('Authorization denied: You must accept data usage rules for this runtime demo.');
     }
 
     setErrors(newErrors);
@@ -1258,13 +1258,13 @@ const ContactForm = () => {
       setSent(true);
       // Reset form fields
       setFormData({
-        nama: '',
+        name: '',
         email: '',
-        topik: '',
-        pesan: '',
-        setuju: false
+        topic: '',
+        message: '',
+        agree: false
       });
-      // Clear success message after 5 seconds
+      // Clear success message after 7 seconds
       setTimeout(() => {
         setSent(false);
       }, 7000);
@@ -1275,11 +1275,11 @@ const ContactForm = () => {
 
   const handleReset = () => {
     setFormData({
-      nama: '',
+      name: '',
       email: '',
-      topik: '',
-      pesan: '',
-      setuju: false
+      topic: '',
+      message: '',
+      agree: false
     });
     setErrors([]);
     setSent(false);
@@ -1288,15 +1288,15 @@ const ContactForm = () => {
   return (
     <main className="container pb-4">
       <header className="mb-4 animate__animated animate__fadeInLeft">
-        <h1 className="h2 neon border-bottom border-neon pb-2">Form Kontak</h1>
-        <p className="small neon-dim mb-0">Isi formulir di bawah. Validasi form dihandle langsung menggunakan React state (client-side demo).</p>
+        <h1 className="h2 neon border-bottom border-neon pb-2">Establish Connection</h1>
+        <p className="small neon-dim mb-0">Drop a payload below. Form validation is handled purely through local runtime state (client-side simulation).</p>
       </header>
 
       <div className="row g-4 justify-content-center">
         <div className="col-lg-7 col-12 animate__animated animate__fadeInLeft" style={{ animationDelay: '200ms' }}>
           {sent && (
             <div className="alert alert-success border border-neon animate__animated animate__fadeIn" role="alert">
-              Terima kasih! Pesan Anda telah berhasil dikirim (simulasi).
+              Transmission successful: Packet sent successfully (simulated).
             </div>
           )}
 
@@ -1312,43 +1312,43 @@ const ContactForm = () => {
 
           <form onSubmit={handleSubmit} className="p-4 rounded bg-dark2 border border-neon" noValidate>
             <div className="mb-3">
-              <label htmlFor="nama" className="form-label neon">Nama</label>
+              <label htmlFor="name" className="form-label neon">Identity / Name</label>
               <input
                 type="text"
-                className={`form-control ${errors.some(e => e.includes('Nama')) ? 'is-invalid' : ''}`}
-                id="nama"
-                name="nama"
+                className={`form-control ${errors.some(e => e.includes('Name') || e.includes('Identity')) ? 'is-invalid' : ''}`}
+                id="name"
+                name="name"
                 required
-                value={formData.nama}
+                value={formData.name}
                 onChange={handleInputChange}
-                placeholder="Nama lengkap"
+                placeholder="Your full name or handle"
               />
             </div>
 
             <div className="mb-3">
-              <label htmlFor="email" className="form-label neon">Email</label>
+              <label htmlFor="email" className="form-label neon">Return Address / Email</label>
               <input
                 type="email"
-                className={`form-control ${errors.some(e => e.includes('Email')) ? 'is-invalid' : ''}`}
+                className={`form-control ${errors.some(e => e.includes('Email') || e.includes('syntax')) ? 'is-invalid' : ''}`}
                 id="email"
                 name="email"
                 required
                 value={formData.email}
                 onChange={handleInputChange}
-                placeholder="nama@email.com"
+                placeholder="name@domain.com"
               />
             </div>
 
             <div className="mb-3">
-              <label htmlFor="topik" className="form-label neon">Topik <span className="text-secondary">(opsional)</span></label>
+              <label htmlFor="topic" className="form-label neon">Classification / Topic <span className="text-secondary">(optional)</span></label>
               <select 
                 className="form-select" 
-                id="topik" 
-                name="topik"
-                value={formData.topik}
+                id="topic" 
+                name="topic"
+                value={formData.topic}
                 onChange={handleInputChange}
               >
-                <option value="">— Pilih topik —</option>
+                <option value="">— Select routing classification —</option>
                 {topics.map((t, idx) => (
                   <option value={t} key={idx}>{t}</option>
                 ))}
@@ -1356,16 +1356,16 @@ const ContactForm = () => {
             </div>
 
             <div className="mb-3">
-              <label htmlFor="pesan" className="form-label neon">Pesan</label>
+              <label htmlFor="message" className="form-label neon">Payload / Message</label>
               <textarea
-                className={`form-control ${errors.some(e => e.includes('Pesan')) ? 'is-invalid' : ''}`}
-                id="pesan"
-                name="pesan"
+                className={`form-control ${errors.some(e => e.includes('Message') || e.includes('Payload')) ? 'is-invalid' : ''}`}
+                id="message"
+                name="message"
                 rows="5"
                 required
-                value={formData.pesan}
+                value={formData.message}
                 onChange={handleInputChange}
-                placeholder="Tulis pesan Anda..."
+                placeholder="Write your logs/message here..."
               ></textarea>
             </div>
 
@@ -1373,23 +1373,23 @@ const ContactForm = () => {
               <input 
                 className="form-check-input" 
                 type="checkbox" 
-                id="setuju" 
-                name="setuju" 
-                checked={formData.setuju}
+                id="agree" 
+                name="agree" 
+                checked={formData.agree}
                 onChange={handleInputChange}
                 required 
               />
-              <label className="form-check-label small" htmlFor="setuju">
-                Saya setuju data ini digunakan untuk keperluan demo/portfolio.
+              <label className="form-check-label small" htmlFor="agree">
+                I agree to let this data pass through for portfolio simulation purposes.
               </label>
             </div>
 
             <div className="d-flex flex-wrap gap-2">
               <button type="submit" className="btn btn-neon-outline px-4" style={{ minHeight: '44px' }}>
-                Kirim
+                &gt; Execute Send
               </button>
               <button type="button" onClick={handleReset} className="btn btn-outline-secondary px-4" style={{ minHeight: '44px' }}>
-                Reset
+                Wipe Form
               </button>
             </div>
           </form>
@@ -1398,8 +1398,8 @@ const ContactForm = () => {
         {/* Social Media Column */}
         <div className="col-lg-5 col-12 animate__animated animate__fadeInRight" style={{ animationDelay: '300ms' }}>
           <div className="p-4 rounded bg-dark2 border border-neon font-mono h-100 d-flex flex-column">
-            <h2 className="h5 neon border-bottom border-neon pb-2 mb-3">Sosial Media &amp; Koneksi</h2>
-            <p className="small text-secondary mb-4">Silakan terhubung melalui platform di bawah ini untuk kolaborasi atau diskusi terkait STEM dan pengembangan web.</p>
+            <h2 className="h5 neon border-bottom border-neon pb-2 mb-3">External Nodes &amp; Grid</h2>
+            <p className="small text-secondary mb-4">Ping me across alternative channels for system architecture discussions, open-source work, or security collaboration.</p>
             
             <div className="d-flex flex-column gap-3">
               {/* GitHub Link */}
@@ -1412,10 +1412,10 @@ const ContactForm = () => {
                   </svg>
                 </div>
                 <div className="flex-grow-1">
-                  <span className="d-block small text-secondary">GITHUB</span>
+                  <span className="d-block small text-secondary">REPOSITORY</span>
                   <span className="neon-dim fw-bold">@NickyIno</span>
                 </div>
-                <span className="text-neon font-mono">&gt; VISIT</span>
+                <span className="text-neon font-mono">&gt; INTERCEPT</span>
               </a>
               
               {/* Instagram Link */}
@@ -1428,10 +1428,10 @@ const ContactForm = () => {
                   </svg>
                 </div>
                 <div className="flex-grow-1">
-                  <span className="d-block small text-secondary">INSTAGRAM</span>
+                  <span className="d-block small text-secondary">SOCIAL HANDLES</span>
                   <span className="neon-dim fw-bold">@nicky_ino</span>
                 </div>
-                <span className="text-neon font-mono">&gt; VISIT</span>
+                <span className="text-neon font-mono">&gt; VIEW</span>
               </a>
 
               {/* Email Link */}
@@ -1444,10 +1444,10 @@ const ContactForm = () => {
                   </svg>
                 </div>
                 <div className="flex-grow-1">
-                  <span className="d-block small text-secondary">EMAIL</span>
+                  <span className="d-block small text-secondary">DIRECT ENDPOINT</span>
                   <span className="neon-dim fw-bold">reffalino...</span>
                 </div>
-                <span className="text-neon font-mono">&gt; MAIL</span>
+                <span className="text-neon font-mono">&gt; PING</span>
               </a>
 
               {/* Status indicator */}
@@ -1459,8 +1459,8 @@ const ContactForm = () => {
                   </svg>
                 </div>
                 <div className="flex-grow-1">
-                  <span className="d-block small text-secondary">STEM STATUS</span>
-                  <span className="neon-dim fw-bold">Active Learner</span>
+                  <span className="d-block small text-secondary">CORE OVERVIEW</span>
+                  <span className="neon-dim fw-bold">Active Systems Learner</span>
                 </div>
                 <span className="badge bg-neon-dark text-neon border border-neon font-mono">ONLINE</span>
               </div>
@@ -1473,7 +1473,6 @@ const ContactForm = () => {
 };
 
 window.ContactForm = ContactForm;
-
     </script>
     <script type="text/babel" data-presets="react">
 const NotFound = () => {
@@ -1481,22 +1480,21 @@ const NotFound = () => {
     <main className="container pb-4">
       <div className="not-found-wrapper text-center py-5 animate__animated animate__fadeIn">
         <div className="font-mono neon display-1 fw-bold mb-2" style={{ textShadow: '0 0 30px rgba(0,255,231,0.4)' }}>404</div>
-        <h1 className="h3 neon mb-3">Page Not Found</h1>
+        <h1 className="h3 neon mb-3">Segment Intercepted: Page Not Found</h1>
         <p className="neon-dim small mb-4 mx-auto" style={{ maxWidth: '420px' }}>
-          Halaman yang Anda cari tidak ada atau telah dipindahkan. Hash route tidak dikenali oleh sistem.
+          The requested resource does not exist or has been dropped from the system memory. Hash route unaligned with the local application router maps.
         </p>
         <div className="d-flex flex-wrap gap-3 justify-content-center">
-          <a href="#home" className="btn btn-neon-outline px-4 font-mono">&gt; Back to Home</a>
-          <a href="#form" className="btn btn-outline-light px-4 font-mono">&gt; Contact Me</a>
+          <a href="#home" className="btn btn-neon-outline px-4 font-mono">&gt; Return to Root</a>
+          <a href="#form" className="btn btn-outline-light px-4 font-mono">&gt; Ping Node</a>
         </div>
-        <p className="small text-secondary mt-5 font-mono">&gt; ERROR_CODE: ROUTE_NOT_FOUND</p>
+        <p className="small text-secondary mt-5 font-mono">&gt; ERROR_CODE: INT_ROUTE_UNRESOLVED</p>
       </div>
     </main>
   );
 };
 
 window.NotFound = NotFound;
-
     </script>
     <script type="text/babel" data-presets="react">
 const BackToTop = () => {

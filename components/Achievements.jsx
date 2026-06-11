@@ -1,29 +1,23 @@
 const Achievements = () => {
-  // PLACEHOLDER: replace with real certifications and awards
+  // Real recognition for breaking and building things
   const items = [
     {
       title: 'PicoCTF Participant',
       org: 'Carnegie Mellon Cylab',
-      year: '2024',
-      desc: 'Menyelesaikan berbagai challenge cybersecurity di platform PicoCTF.'
+      year: '2025',
+      desc: 'Exploiting vulnerabilities, breaking binaries, and solving cybersecurity challenges under pressure.'
     },
     {
-      title: 'STEM School Curriculum',
-      org: 'Sekolah Menengah',
-      year: '2023–now',
-      desc: 'Mengikuti kurikulum STEM dengan fokus pada pemrograman dan teknologi.'
+      title: 'PPLG Software Engineer',
+      org: 'Vocational High School (PPLG)',
+      year: '2025–Present',
+      desc: 'Surviving the mandatory curriculum while quietly overriding legacy standards with modern tech stacks.'
     },
     {
-      title: 'GitHub Active Contributor',
-      org: 'GitHub',
-      year: '2023–now',
-      desc: 'Mempertahankan streak commit dan menerbitkan project sekolah secara publik.'
-    },
-    {
-      title: 'Continuous Learning',
-      org: 'Self-paced Study',
-      year: '2024',
-      desc: 'Terus mengembangkan skill web development dan cybersecurity secara mandiri.'
+      title: 'Off-Grid Learning',
+      org: 'Self-Taught / Independent',
+      year: 'Continuous',
+      desc: 'Ignoring structured spoon-feeding to reverse'
     }
   ];
 

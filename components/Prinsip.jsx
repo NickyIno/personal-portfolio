@@ -3,32 +3,32 @@ const Prinsip = ({ view = 'desktop' }) => {
 
   const prinsipData = [
     {
-      id: 'cbp',
-      short_title: 'Curriculum-Bound',
-      title: 'Curriculum-Bound Principle',
-      text: 'Menjaga "kemurnian" hasil <b>Codingan Sekolah</b> dengan hanya menggunakan apa yang diajarkan. Kalau sekolah tidak mengajarkan, ya tidak akan dipakai di project sekolah.',
-      short_text: 'Menjaga "kemurnian" hasil Codingan Sekolah dengan hanya menggunakan apa yang diajarkan.'
+      id: 'oob',
+      short_title: 'Out-of-Bounds',
+      title: 'The Out-of-Bounds Principle',
+      text: 'Rejecting the compliance metrics of dead, legacy curricula. While institutions demand adherence to outdated tech debt, I engineer around their limitations to study modern engineering paradigms, serverless architectures, and real-world system optimization.',
+      short_text: 'Bypassing dead legacy institutional curricula to build modern tech debt-free systems.'
     },
     {
       id: 'drtw',
-      short_title: "Don't Reinvent the Wheel",
-      title: "Don't Reinvent the Wheel",
-      text: 'Menolak kebiasaan buang-buang waktu dengan menulis ulang logika yang sudah disempurnakan oleh ribuan engineer. Memilih reuse library — solusi yang stabil, aman, dan teruji.',
-      short_text: 'Memilih reuse library daripada menulis ulang logika dari nol.'
+      short_title: "DRYW Abstraction",
+      title: "Don't Reinvent the Wheel (DRYW)",
+      text: 'Refusing to waste execution cycles rewriting logic already perfected by thousands of senior architects. Prioritizing stable, secure, and production-tested library abstractions over manual, bug-prone system rebuilding.',
+      short_text: 'Leveraging established library ecosystems over writing redundant logic from scratch.'
     },
     {
       id: 'cia',
-      short_title: 'CIA',
+      short_title: 'CIA Triad',
       title: 'Confidentiality, Integrity, and Availability',
-      text: 'Prinsip CIA yang sering dipakai di cybersecurity, tapi juga berlaku di programming secara umum. Jaga integritas kode dan data, serta pastikan sistem tetap tersedia.',
-      short_text: 'Jaga kerahasiaan, integritas, dan ketersediaan sistem.'
+      text: 'Enforcing the fundamental pillars of defensive security operations at the root level of software engineering. Every backend service must explicitly maintain strict asset confidentiality, data mutation verification, and resilient uptime parameters.',
+      short_text: 'Implementing foundational security postures across system design and runtime memory.'
     }
   ];
 
   if (view === 'desktop') {
     return (
       <div className="p-3 rounded shadow-sm bg-dark2 border border-1 border-neon">
-        <h2 className="h4 border-bottom border-neon pb-2 mb-3 neon">Prinsip dalam Pemrograman</h2>
+        <h2 className="h4 border-bottom border-neon pb-2 mb-3 neon">Core System Principles</h2>
         {prinsipData.map((p, i) => (
           <div className="d-flex pt-3" key={p.id}>
             <div className={`pb-3 mb-0 small lh-sm ${i < prinsipData.length - 1 ? 'border-bottom border-neon' : ''} w-100`}>
@@ -54,13 +54,13 @@ const Prinsip = ({ view = 'desktop' }) => {
               onClick={() => setActiveTab(p.id)}
               style={{ minHeight: '44px' }}
             >
-              {p.short_title}
+              &gt;_ {p.short_title}
             </button>
           </li>
         ))}
       </ul>
       <div className="tab-content border-top border-neon pt-3">
-        <div className="tab-pane active fade show small lh-sm">
+        <div className="tab-pane active fade show small lh-sm text-secondary">
           {activePrinsip ? activePrinsip.short_text : ''}
         </div>
       </div>

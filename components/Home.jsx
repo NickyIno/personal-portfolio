@@ -25,6 +25,7 @@ const Home = () => {
 
       <div className="row mt-3">
         <div className="col-lg-8 col-12">
+          {/* Desktop Layout Viewport */}
           <div className="d-none d-lg-block">
             <AnimatedSection animationClass="animate__fadeInLeft" delay="100ms">
               <AboutMe />
@@ -39,6 +40,7 @@ const Home = () => {
             </AnimatedSection>
           </div>
 
+          {/* Mobile Layout Viewport / Handled via Accordion Panels */}
           <div className="d-block d-lg-none my-3">
             <AnimatedSection animationClass="animate__zoomIn" delay="200ms">
               <div className="accordion" id="mobileContentAccordion">
@@ -50,7 +52,7 @@ const Home = () => {
                       onClick={() => toggleMobileAcc(0)}
                       style={{ minHeight: '44px' }}
                     >
-                      About Me
+                      System Profile
                     </button>
                   </h2>
                   <div
@@ -59,7 +61,7 @@ const Home = () => {
                   >
                     <div className="accordion-body">
                       <p className="small mb-0" style={{ lineHeight: '1.6' }}>
-                        Halo! Saya Reffalino Nicky Chandra, seorang anak STEM yang memiliki ketertarikan luas pada dunia teknologi dan sains. Saya senang mengeksplorasi Web Development, Cybersecurity, hingga IoT.
+                        Host Node: Reffalino Nicky Chandra. Operating within the STEM domain with a deep bias toward lower-level systems engineering, custom Unix setups, network operations, and asynchronous architecture. 
                       </p>
                     </div>
                   </div>
@@ -73,7 +75,7 @@ const Home = () => {
                       onClick={() => toggleMobileAcc(1)}
                       style={{ minHeight: '44px' }}
                     >
-                      GitHub Streak
+                      Commit Log / Streak
                     </button>
                   </h2>
                   <div
@@ -81,7 +83,7 @@ const Home = () => {
                     style={{ display: activeMobileAcc === 1 ? 'block' : 'none' }}
                   >
                     <div className="accordion-body">
-                      <img src="https://streak-stats.demolab.com/?user=NickyIno&theme=tokyonight" alt="GitHub streak" className="w-100 img-fluid" loading="lazy" />
+                      <img src="https://streak-stats.demolab.com/?user=NickyIno&theme=tokyonight" alt="GitHub streak matrix" className="w-100 img-fluid" loading="lazy" />
                     </div>
                   </div>
                 </div>
@@ -94,7 +96,7 @@ const Home = () => {
                       onClick={() => toggleMobileAcc(2)}
                       style={{ minHeight: '44px' }}
                     >
-                      Prinsip dalam Pemrograman
+                      Core Architecture Principles
                     </button>
                   </h2>
                   <div
@@ -111,18 +113,19 @@ const Home = () => {
           </div>
         </div>
 
+        {/* Sidebar Diagnostics Column */}
         <div className="col-lg-4 col-12" id="about-sidebar">
           <div className="d-none d-lg-block my-3">
             <AnimatedSection animationClass="animate__fadeInRight" delay="200ms">
               <div className="card bg-dark2 border border-neon mb-3">
-                <img src="images/Kessoku%20Band!.jpg" className="card-img-top img-fluid" alt="Foto profil" />
+                <img src="images/Kessoku%20Band!.jpg" className="card-img-top img-fluid" alt="Avatar payload" />
                 <div className="card-body">
                   <h2 className="card-title h5 neon">Reffalino Nicky Chandra</h2>
-                  <p className="card-text small mb-0">Seorang anak STEM, tertarik pada hampir semua bidang STEM walaupun tahu harus memiliki salah satu sebagai fokus utama.</p>
+                  <p className="card-text small mb-0">System operator navigating the cross-sections of computing and applied engineering. Rejects basic curriculum constraints; prioritizing efficient library abstraction over wheel-reinvention.</p>
                 </div>
               </div>
-              <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=NickyIno&layout=compact&theme=tokyonight" alt="GitHub stats" className="w-100 img-fluid rounded shadow-sm border border-neon mb-2" loading="lazy" />
-              <p className="text-center small neon-dim mb-0">Most repos are private due to NDA</p>
+              <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=NickyIno&layout=compact&theme=tokyonight" alt="GitHub environment analytics" className="w-100 img-fluid rounded shadow-sm border border-neon mb-2" loading="lazy" />
+              <p className="text-center small neon-dim mb-0">Critical repositories isolated under private status</p>
             </AnimatedSection>
           </div>
         </div>

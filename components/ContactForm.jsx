@@ -1,16 +1,17 @@
 const ContactForm = () => {
   const [formData, setFormData] = React.useState({
-    nama: '',
+    name: '',
     email: '',
-    topik: '',
-    pesan: '',
-    setuju: false
+    topic: '',
+    message: '',
+    agree: false
   });
 
   const [errors, setErrors] = React.useState([]);
   const [sent, setSent] = React.useState(false);
 
-  const topics = ['Kolaborasi', 'Pertanyaan', 'Feedback', 'Mobile Dev', 'Lainnya'];
+  // Cleaned up the categories to sound sharper
+  const topics = ['Collaboration', 'Inquiry', 'Feedback', 'Systems / Architecture', 'Other'];
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -24,21 +25,21 @@ const ContactForm = () => {
     e.preventDefault();
     const newErrors = [];
 
-    if (formData.nama.trim().length < 2) {
-      newErrors.push('Nama wajib diisi (minimal 2 karakter).');
+    if (formData.name.trim().length < 2) {
+      newErrors.push('Identity verification failed: Name requires at least 2 characters.');
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email.trim())) {
-      newErrors.push('Email tidak valid.');
+      newErrors.push('Invalid syntax: Email format not recognized.');
     }
 
-    if (formData.pesan.trim() === '') {
-      newErrors.push('Pesan wajib diisi.');
+    if (formData.message.trim() === '') {
+      newErrors.push('Payload error: Message payload cannot be empty.');
     }
 
-    if (!formData.setuju) {
-      newErrors.push('Anda harus menyetujui penggunaan data untuk keperluan demo.');
+    if (!formData.agree) {
+      newErrors.push('Authorization denied: You must accept data usage rules for this runtime demo.');
     }
 
     setErrors(newErrors);
@@ -47,13 +48,13 @@ const ContactForm = () => {
       setSent(true);
       // Reset form fields
       setFormData({
-        nama: '',
+        name: '',
         email: '',
-        topik: '',
-        pesan: '',
-        setuju: false
+        topic: '',
+        message: '',
+        agree: false
       });
-      // Clear success message after 5 seconds
+      // Clear success message after 7 seconds
       setTimeout(() => {
         setSent(false);
       }, 7000);
@@ -64,11 +65,11 @@ const ContactForm = () => {
 
   const handleReset = () => {
     setFormData({
-      nama: '',
+      name: '',
       email: '',
-      topik: '',
-      pesan: '',
-      setuju: false
+      topic: '',
+      message: '',
+      agree: false
     });
     setErrors([]);
     setSent(false);
@@ -77,15 +78,15 @@ const ContactForm = () => {
   return (
     <main className="container pb-4">
       <header className="mb-4 animate__animated animate__fadeInLeft">
-        <h1 className="h2 neon border-bottom border-neon pb-2">Form Kontak</h1>
-        <p className="small neon-dim mb-0">Isi formulir di bawah. Validasi form dihandle langsung menggunakan React state (client-side demo).</p>
+        <h1 className="h2 neon border-bottom border-neon pb-2">Establish Connection</h1>
+        <p className="small neon-dim mb-0">Drop a payload below. Form validation is handled purely through local runtime state (client-side simulation).</p>
       </header>
 
       <div className="row g-4 justify-content-center">
         <div className="col-lg-7 col-12 animate__animated animate__fadeInLeft" style={{ animationDelay: '200ms' }}>
           {sent && (
             <div className="alert alert-success border border-neon animate__animated animate__fadeIn" role="alert">
-              Terima kasih! Pesan Anda telah berhasil dikirim (simulasi).
+              Transmission successful: Packet sent successfully (simulated).
             </div>
           )}
 
@@ -101,43 +102,43 @@ const ContactForm = () => {
 
           <form onSubmit={handleSubmit} className="p-4 rounded bg-dark2 border border-neon" noValidate>
             <div className="mb-3">
-              <label htmlFor="nama" className="form-label neon">Nama</label>
+              <label htmlFor="name" className="form-label neon">Identity / Name</label>
               <input
                 type="text"
-                className={`form-control ${errors.some(e => e.includes('Nama')) ? 'is-invalid' : ''}`}
-                id="nama"
-                name="nama"
+                className={`form-control ${errors.some(e => e.includes('Name') || e.includes('Identity')) ? 'is-invalid' : ''}`}
+                id="name"
+                name="name"
                 required
-                value={formData.nama}
+                value={formData.name}
                 onChange={handleInputChange}
-                placeholder="Nama lengkap"
+                placeholder="Your full name or handle"
               />
             </div>
 
             <div className="mb-3">
-              <label htmlFor="email" className="form-label neon">Email</label>
+              <label htmlFor="email" className="form-label neon">Return Address / Email</label>
               <input
                 type="email"
-                className={`form-control ${errors.some(e => e.includes('Email')) ? 'is-invalid' : ''}`}
+                className={`form-control ${errors.some(e => e.includes('Email') || e.includes('syntax')) ? 'is-invalid' : ''}`}
                 id="email"
                 name="email"
                 required
                 value={formData.email}
                 onChange={handleInputChange}
-                placeholder="nama@email.com"
+                placeholder="name@domain.com"
               />
             </div>
 
             <div className="mb-3">
-              <label htmlFor="topik" className="form-label neon">Topik <span className="text-secondary">(opsional)</span></label>
+              <label htmlFor="topic" className="form-label neon">Classification / Topic <span className="text-secondary">(optional)</span></label>
               <select 
                 className="form-select" 
-                id="topik" 
-                name="topik"
-                value={formData.topik}
+                id="topic" 
+                name="topic"
+                value={formData.topic}
                 onChange={handleInputChange}
               >
-                <option value="">— Pilih topik —</option>
+                <option value="">— Select routing classification —</option>
                 {topics.map((t, idx) => (
                   <option value={t} key={idx}>{t}</option>
                 ))}
@@ -145,16 +146,16 @@ const ContactForm = () => {
             </div>
 
             <div className="mb-3">
-              <label htmlFor="pesan" className="form-label neon">Pesan</label>
+              <label htmlFor="message" className="form-label neon">Payload / Message</label>
               <textarea
-                className={`form-control ${errors.some(e => e.includes('Pesan')) ? 'is-invalid' : ''}`}
-                id="pesan"
-                name="pesan"
+                className={`form-control ${errors.some(e => e.includes('Message') || e.includes('Payload')) ? 'is-invalid' : ''}`}
+                id="message"
+                name="message"
                 rows="5"
                 required
-                value={formData.pesan}
+                value={formData.message}
                 onChange={handleInputChange}
-                placeholder="Tulis pesan Anda..."
+                placeholder="Write your logs/message here..."
               ></textarea>
             </div>
 
@@ -162,23 +163,23 @@ const ContactForm = () => {
               <input 
                 className="form-check-input" 
                 type="checkbox" 
-                id="setuju" 
-                name="setuju" 
-                checked={formData.setuju}
+                id="agree" 
+                name="agree" 
+                checked={formData.agree}
                 onChange={handleInputChange}
                 required 
               />
-              <label className="form-check-label small" htmlFor="setuju">
-                Saya setuju data ini digunakan untuk keperluan demo/portfolio.
+              <label className="form-check-label small" htmlFor="agree">
+                I agree to let this data pass through for portfolio simulation purposes.
               </label>
             </div>
 
             <div className="d-flex flex-wrap gap-2">
               <button type="submit" className="btn btn-neon-outline px-4" style={{ minHeight: '44px' }}>
-                Kirim
+                &gt; Execute Send
               </button>
               <button type="button" onClick={handleReset} className="btn btn-outline-secondary px-4" style={{ minHeight: '44px' }}>
-                Reset
+                Wipe Form
               </button>
             </div>
           </form>
@@ -187,8 +188,8 @@ const ContactForm = () => {
         {/* Social Media Column */}
         <div className="col-lg-5 col-12 animate__animated animate__fadeInRight" style={{ animationDelay: '300ms' }}>
           <div className="p-4 rounded bg-dark2 border border-neon font-mono h-100 d-flex flex-column">
-            <h2 className="h5 neon border-bottom border-neon pb-2 mb-3">Sosial Media &amp; Koneksi</h2>
-            <p className="small text-secondary mb-4">Silakan terhubung melalui platform di bawah ini untuk kolaborasi atau diskusi terkait STEM dan pengembangan web.</p>
+            <h2 className="h5 neon border-bottom border-neon pb-2 mb-3">External Nodes &amp; Grid</h2>
+            <p className="small text-secondary mb-4">Ping me across alternative channels for system architecture discussions, open-source work, or security collaboration.</p>
             
             <div className="d-flex flex-column gap-3">
               {/* GitHub Link */}
@@ -201,10 +202,10 @@ const ContactForm = () => {
                   </svg>
                 </div>
                 <div className="flex-grow-1">
-                  <span className="d-block small text-secondary">GITHUB</span>
+                  <span className="d-block small text-secondary">REPOSITORY</span>
                   <span className="neon-dim fw-bold">@NickyIno</span>
                 </div>
-                <span className="text-neon font-mono">&gt; VISIT</span>
+                <span className="text-neon font-mono">&gt; INTERCEPT</span>
               </a>
               
               {/* Instagram Link */}
@@ -217,10 +218,10 @@ const ContactForm = () => {
                   </svg>
                 </div>
                 <div className="flex-grow-1">
-                  <span className="d-block small text-secondary">INSTAGRAM</span>
+                  <span className="d-block small text-secondary">SOCIAL HANDLES</span>
                   <span className="neon-dim fw-bold">@nicky_ino</span>
                 </div>
-                <span className="text-neon font-mono">&gt; VISIT</span>
+                <span className="text-neon font-mono">&gt; VIEW</span>
               </a>
 
               {/* Email Link */}
@@ -233,10 +234,10 @@ const ContactForm = () => {
                   </svg>
                 </div>
                 <div className="flex-grow-1">
-                  <span className="d-block small text-secondary">EMAIL</span>
+                  <span className="d-block small text-secondary">DIRECT ENDPOINT</span>
                   <span className="neon-dim fw-bold">reffalino...</span>
                 </div>
-                <span className="text-neon font-mono">&gt; MAIL</span>
+                <span className="text-neon font-mono">&gt; PING</span>
               </a>
 
               {/* Status indicator */}
@@ -248,8 +249,8 @@ const ContactForm = () => {
                   </svg>
                 </div>
                 <div className="flex-grow-1">
-                  <span className="d-block small text-secondary">STEM STATUS</span>
-                  <span className="neon-dim fw-bold">Active Learner</span>
+                  <span className="d-block small text-secondary">CORE OVERVIEW</span>
+                  <span className="neon-dim fw-bold">Active Systems Learner</span>
                 </div>
                 <span className="badge bg-neon-dark text-neon border border-neon font-mono">ONLINE</span>
               </div>

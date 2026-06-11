@@ -1,39 +1,39 @@
 const Experience = () => {
   const AnimatedSection = window.AnimatedSection;
 
-  // PLACEHOLDER: replace with real education and work history
+  // Chronological log of execution and system exploration
   const timeline = [
     {
-      period: '2024 – Sekarang',
-      title: 'STEM Student — Web & Cybersecurity',
-      org: 'Sekolah Menengah',
-      type: 'education',
+      period: '2025 – Present',
+      title: 'Systems & Software Engineering',
+      org: 'Vocational High School (PPLG)',
+      type: 'root_env',
       points: [
-        'Mempelajari web development (HTML, CSS, JS, PHP, React)',
-        'Eksplorasi cybersecurity melalui CTF dan Linux',
-        'Membangun project sekolah: CMS, Buku Kas, Portfolio'
+        'Developing backends and optimizing architectures while actively engineering around legacy institutional stacks.',
+        'Deep-diving into network exploration, binary analysis, and security operations using custom terminal environments.',
+        'Building dynamic, production-ready system applications including standalone web platforms and data-driven dashboards.'
       ]
     },
     {
-      period: '2024',
-      title: 'Self-taught Developer',
-      org: 'Personal Learning',
-      type: 'learning',
+      period: '2025 – Present',
+      title: 'Independent Stack Architecture & Red Teaming',
+      org: 'Off-Grid Development',
+      type: 'sub_shell',
       points: [
-        'Mempelajari MERN stack dan Laravel secara mandiri',
-        'Berpartisipasi di PicoCTF dan latihan penetration testing',
-        'Mengembangkan workflow Git/GitHub untuk version control'
+        'Self-studying the MERN stack ecosystem, asynchronous execution, and modern serverless application logic.',
+        'Competing in PicoCTF challenges; executing penetration testing scripts, and analyzing algorithmic vulnerabilities.',
+        'Standardizing Git configurations and maintaining continuous integration across open-source configurations.'
       ]
     },
     {
       period: '2023',
-      title: 'First Steps in Programming',
-      org: 'School & Online Resources',
-      type: 'education',
+      title: 'First Compilation & Core Logic Execution',
+      org: 'Local Environment Setup',
+      type: 'init_process',
       points: [
-        'Memulai dengan Python dan logika pemrograman dasar',
-        'Membuat portofolio web semester 1',
-        'Memahami fundamental algoritma dan struktur data'
+        'Initialized programming logic utilizing Python to automate scripts and handle early data manipulation.',
+        'Deployed the initial iteration of a clean, terminal-inspired web portfolio layout.',
+        'Mastered fundamental data structures, low-level flow control, and core algorithmic parameters.'
       ]
     }
   ];
@@ -41,8 +41,8 @@ const Experience = () => {
   return (
     <main className="container pb-4">
       <header className="mb-4 animate__animated animate__fadeInLeft">
-        <h1 className="h2 neon border-bottom border-neon pb-2">Experience &amp; Timeline</h1>
-        <p className="small neon-dim mb-0">Perjalanan belajar dan pengembangan saya di dunia STEM dan teknologi.</p>
+        <h1 className="h2 neon border-bottom border-neon pb-2">Runtime Log &amp; Timeline</h1>
+        <p className="small neon-dim mb-0">Chronological history of system tracking, independent builds, and educational execution milestones.</p>
       </header>
 
       <div className="timeline">
